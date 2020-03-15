@@ -3,19 +3,19 @@
   "version": "0.0.1",
   "description": "rutas.",
   "scripts": {
-  "docs:dev": "vuepress dev docs",
-  "docs:build": "vuepress build docs"
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kateMoscoso/notes-tips"
-},
+  },
   "keywords": [
     "vue",
     "vuepress"
-],
+  ],
   "author": "Katherin Moscoso",
   "devDependencies": {
-    "vuepress": "^1.3.0"
+    "vuepress": "^1.3.1"
   }
 }
