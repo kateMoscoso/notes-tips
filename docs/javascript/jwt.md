@@ -14,3 +14,9 @@ xxxxx.yyyyy.zzzzz
 **Payload** contains claims (statements about an entity - for example, a user and additional data)
 
 **Signature** is the result of the encoded header, the encoe payload, signed against a secret.
+
+
+JSON Web Tokens can be decoded by anyone. They should not contain sensitive information such as passwords.
+
+It is useful for front-end applicatin to user these tokens to toggle features conditionally. For example, if a user is an administrator, we could show or hide a certain button base on the claims in the token.
+
