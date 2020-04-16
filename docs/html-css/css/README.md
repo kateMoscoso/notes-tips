@@ -124,3 +124,39 @@ También existe el selector +. Solo aplica los estilos al primer hermano directo
   background-color: blue;
 }
 ```
+
+
+
+
+##  Flexbox
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+https://flexboxfroggy.com/
+
+Con CSS Grid podemos maquetar todo el layout/estructura general de nuestro sitio para que se adapten a diferentes tamaños de pantalla, lo que conocemos como diseño responsivo.
+
+Al igual que Flebox, tenemos propiedades diferentes, tanto para el contenedor como para los elementos, y podemos usarlos dependiendo de nuestras necesidades.
+
+## Css grid
+https://labs.jensimmons.com/
+https://cssgridgarden.com/
+
+## Media queries
+Los media queries nos ayudan a ajustar nuestros diseño a dispositivos más pequeños como tablets y celulares.
+
+Es recomendable seguir la metodología de Mobile First: comenzar a diseñar para el dispositivo más pequeño e ir creando las media queries para las pantallas más grandes.
+
+
+## Preprocesador
+
+Un preprocesador CSS es un programa que te permite generar CSS a partir de la syntax única del preprocesador. Existen varios preprocesadores CSS de los cuales escoger, sin embargo la mayoría de preprocesadores CSS añadiran algunas características que no existen en CSS puro, como variable, mixins, selectores anidados, entre otros. Estas características hacen la estructura de CSS más legible y fácil de mantener.
+
+Para utilizar un preprocesador CSS debes instalar un compilador CSS en tu web  server.
+
+sass
+
+```
+npm install -g sass
+```
+
+https://github.com/teffcode/sass-workshop
