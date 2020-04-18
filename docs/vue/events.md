@@ -27,3 +27,29 @@ Our button is listening for click events with the `v-on` directive, which trigge
 * The `v-on` directive can trigger a method
 * Triggered methods can take in arguments
 `this` refers to the current Vue instance’s data as well as other methods declared inside the instance
+
+``` html
+<button @click="addToCart"> AddToCart </button>
+<diV @mouseover="updateProducy"> Color </div>
+<form @submit="addToCart"> ... </form>
+<input @keyup.enter="send">
+```
+Modifier `.enter`
+
+## Binding 
+``` html
+<button
+:disabled="!inStock"
+:class="{ disabledButton: !inStock }"
+></button>
+``` 
+
+We’re using the v-bind directive’s shorthand : to bind to our button’s class. Inside the brackets we’re determining the presence of the disabled-button class by the truthiness of the data property inStock.
+
+In other words, when our product is not in stock ( !inStock ), the disabledButton class is added. Since the disabled-button class applies a gray background-color, the button turns gray.
+
+Great! We’ve combined our new skill class binding with attribute binding to disable our button and turn it gray whenever our product inStock is false.
+
+emit and handler
+
+v-model two-way data binding

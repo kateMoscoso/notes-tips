@@ -106,3 +106,38 @@ Finally, when defining your props, remember to answer the three fundamental ques
 * Can you provide default data to account for most scenario?
 
 Remember that props are useful for providing detailed specifications on how to use a component, but this is also it’s downside as this does not allow flexibility on the developer’s part.
+
+## image requirements
+* Images live in the images directory
+* Images can only be a PNG or JPEG
+
+
+``` vue
+validator: propValue => {
+	const  propExists =  propValue.length > 0
+	return propExists
+}
+``` javascrpt
+
+`propValue` Anonymous function that receives the value as the first argument
+`propExists` Return a Boolean value based on the desired logic
+
+
+``` vue
+export default {
+  props: {
+    image: {
+      type; String,
+      default: '/images/placeholder.png'	
+      validator: propValue => {
+         const hasImagesDirectory = propValue.indexOf('/images/') > -1
+	 const isPNG = propValue.endsWith('.png')
+	 const isJPEG = propValue.endsWith('.jpeg') || propValue.endsWith('.jpg')
+	 const hasValidExtension = isPNG || isJPEG
+
+	 return hasImagesDirectory && hasValidExtension
+       }
+     }
+  }
+}
+```
