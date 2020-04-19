@@ -53,3 +53,4 @@ Great! We’ve combined our new skill class binding with attribute binding to di
 emit and handler
 
 v-model two-way data binding
+@submit.prevent, this will prevent de defaul behaviours
