@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lifecycle Hooks | Hello ;)</title>
+    <meta name="description" content="Just playing around">
+    <meta name="generator" content="VuePress 1.3.0">
+    
+    
+    <link rel="preload" href="/notes-tips/assets/css/0.styles.d0e609a8.css" as="style"><link rel="preload" href="/notes-tips/assets/js/app.557ce569.js" as="script"><link rel="preload" href="/notes-tips/assets/js/2.d0218362.js" as="script"><link rel="preload" href="/notes-tips/assets/js/22.3fdbb1e5.js" as="script"><link rel="prefetch" href="/notes-tips/assets/js/10.5b08dcb9.js"><link rel="prefetch" href="/notes-tips/assets/js/11.43ade1ee.js"><link rel="prefetch" href="/notes-tips/assets/js/12.f8bc895e.js"><link rel="prefetch" href="/notes-tips/assets/js/13.24d9da50.js"><link rel="prefetch" href="/notes-tips/assets/js/14.251b784d.js"><link rel="prefetch" href="/notes-tips/assets/js/15.70e2dcbb.js"><link rel="prefetch" href="/notes-tips/assets/js/16.a770eeac.js"><link rel="prefetch" href="/notes-tips/assets/js/17.ec392fa7.js"><link rel="prefetch" href="/notes-tips/assets/js/18.6ad3cce7.js"><link rel="prefetch" href="/notes-tips/assets/js/19.c437d1ea.js"><link rel="prefetch" href="/notes-tips/assets/js/20.3818af9a.js"><link rel="prefetch" href="/notes-tips/assets/js/21.c71aa5ff.js"><link rel="prefetch" href="/notes-tips/assets/js/23.62dfaa37.js"><link rel="prefetch" href="/notes-tips/assets/js/24.5fac8cff.js"><link rel="prefetch" href="/notes-tips/assets/js/25.2cf37cc2.js"><link rel="prefetch" href="/notes-tips/assets/js/26.52485140.js"><link rel="prefetch" href="/notes-tips/assets/js/27.636c97a8.js"><link rel="prefetch" href="/notes-tips/assets/js/28.a0f23262.js"><link rel="prefetch" href="/notes-tips/assets/js/3.570f6e99.js"><link rel="prefetch" href="/notes-tips/assets/js/4.b9e1cdb8.js"><link rel="prefetch" href="/notes-tips/assets/js/5.74eeff93.js"><link rel="prefetch" href="/notes-tips/assets/js/6.095a5b90.js"><link rel="prefetch" href="/notes-tips/assets/js/7.fc4a63bc.js"><link rel="prefetch" href="/notes-tips/assets/js/8.75653bce.js"><link rel="prefetch" href="/notes-tips/assets/js/9.62c92631.js">
+    <link rel="stylesheet" href="/notes-tips/assets/css/0.styles.d0e609a8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/notes-tips/" class="home-link router-link-active"><!----> <span class="site-name">Hello ;)</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/notes-tips/" class="nav-link">
+  Init
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/notes-tips/" class="nav-link">
+  Init
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/notes-tips/" class="sidebar-link">Tips documentation</a></li><li><a href="/notes-tips/javascript/" class="sidebar-link">Javascript</a></li><li><a href="/notes-tips/vue/" class="sidebar-link">Vue</a></li><li><a href="/notes-tips/docker/" class="sidebar-link">Docker</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="lifecycle-hooks"><a href="#lifecycle-hooks" class="header-anchor">#</a> Lifecycle Hooks</h2> <ul><li><strong>beforeCreate</strong> - Called immediately after instance is initialized, before options are processed.</li> <li><strong>created</strong> - Called after the instance has been created.</li> <li><strong>beforeMount</strong> - Right before mounting of the DOM begins</li> <li><strong>mounted</strong> - Called when the instance has been mounted (browser updated).</li> <li><strong>beforeUpdate</strong> - Called when reactive data has changed, before the DOM is re-rendered.</li> <li><strong>updated</strong> - Called when reactive data has changed, and the DOM has been re-rendered.</li> <li><strong>beforeDestroy</strong> - Called right before the Vue instance is destroyed.</li> <li><strong>destroyed</strong> - Called after the Vue instance has been destroyed.</li></ul> <p>There are two newer Vue 2 LifeCycle methods you may not be familiar with:</p> <ul><li><strong>activated</strong> - Used for , when a component inside is toggled on.</li> <li><strong>deactivated</strong> - Used for , when a component inside is toggled off.</li> <li><strong>errorCaptured</strong> - Called when an error from any descendent component is captured.</li></ul> <p>For more detailed explanations check out the API documentation on LifeCycle hooks.</p> <h3 id="unmounting-in-vue-3"><a href="#unmounting-in-vue-3" class="header-anchor">#</a> Unmounting in Vue 3</h3> <p>In Vue 3 beforeDestroy() can also be written as beforeUnmount(), and destroyed() can be written as unmounted(). When I asked Evan You about these changes, he mentioned it’s just a better naming conventions, because Vue mounts and unmounts components.</p> <h3 id="composition-api-lifecycle-methods"><a href="#composition-api-lifecycle-methods" class="header-anchor">#</a> Composition API LifeCycle Methods</h3> <p>In Vue 3’s Composition API we can create callback hooks inside setup() by adding on to the LifeCycle method name:</p> <div class="language- extra-class"><pre class="language-text"><code>import {
+  onBeforeMount,
+  onMounted,
+  onBeforeUpdate,
+  onUpdated,
+  onBeforeUnmount,
+  onUnmounted,
+  onActivated,
+  onDeactivated,
+  onErrorCaptured
+} from &quot;vue&quot;;
+
+export default {
+  setup() {
+    onBeforeMount(() =&gt; {
+      console.log(&quot;Before Mount!&quot;);
+    });
+    onMounted(() =&gt; {
+      console.log(&quot;Mounted!&quot;);
+    });
+    onBeforeUpdate(() =&gt; {
+      console.log(&quot;Before Update!&quot;);
+    });
+    onUpdated(() =&gt; {
+      console.log(&quot;Updated!&quot;);
+    });
+    onBeforeUnmount(() =&gt; {
+      console.log(&quot;Before Unmount!&quot;);
+    });
+    onUnmounted(() =&gt; {
+      console.log(&quot;Unmounted!&quot;);
+    });
+    onActivated(() =&gt; {
+      console.log(&quot;Activated!&quot;);
+    });
+    onDeactivated(() =&gt; {
+      console.log(&quot;Deactivated!&quot;);
+    });
+    onErrorCaptured(() =&gt; {
+      console.log(&quot;Error Captured!&quot;);
+    });
+  }
+};
+</code></pre></div><p>You might notice that two hooks are missing. beforeCreate and created are not needed when using the Composition API. This is because beforeCreate() is called right before setup() and created() is called right after setup(). Thus, we simply put code inside setup() that would normally be in these hooks, such as API calls.</p> <h3 id="two-new-vue-3-lifecycle-methods"><a href="#two-new-vue-3-lifecycle-methods" class="header-anchor">#</a> Two New Vue 3 LifeCycle Methods</h3> <p>There are two more additional watchers coming in Vue 3. These have not been implemented with the Vue 2 Composition API plugin (as I’m writing this), so you can’t play with them without using Vue 3 source.</p> <ul><li><strong>onRenderTracked</strong> - called when a reactive dependency is first being accessed in the render function, during render. This dependency will now be tracked. This is helpful to see which dependencies are being tracked, for debugging.</li> <li><strong>onRenderTriggered</strong> - Called when a new render is triggered, allowing you to inspect what dependency triggered a component to re-render.</li></ul> <h3 id="watch"><a href="#watch" class="header-anchor">#</a> Watch</h3> <p>This will run our function on the next tick while reactively tracking its dependencies, and re-run it whenever the dependencies have changed</p> <div class="language- extra-class"><pre class="language-text"><code>setup() {
+  const searchInput = ref(&quot;&quot;);
+  const results = ref(0);
+
+  watch(() =&gt; {
+    results.value = eventApi.getEventCount(searchInput.value);
+  });
+
+  return { searchInput, results };
+}
+</code></pre></div><p>So the first time this gets run it uses reactivity to start tracking searchInput, and when it gets updated it will re-run our API call which will update results. Since results is used in our template our template will be re-rendered.</p> <p>If I want to be more specific as to which source I want to watch for changes, I can specify it in the watcher definition, like so:</p> <div class="language- extra-class"><pre class="language-text"><code>watch(searchInput, () =&gt; {
+  ...
+});
+</code></pre></div><p>Also, if I need access to the new value and old value of the item being watched I can write:</p> <div class="language- extra-class"><pre class="language-text"><code>watch(searchInput, (newVal, oldVal) =&gt; {
+  ...
+});
+</code></pre></div><p>Watching Multiple Sources
+If I want to watch two Reactive References I can send them inside an array:</p> <div class="language- extra-class"><pre class="language-text"><code>watch([firstName, lastName], () =&gt; {
+  ...  
+});
+</code></pre></div><p>Now if either are changed, the code inside will re-run. I can also get access to both of their old and new values with:</p> <div class="language- extra-class"><pre class="language-text"><code>watch([firstName, lastName], ([newFirst, newLast], [oldFirst, oldLast]) =&gt; {
+  ...   
+});
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/notes-tips/assets/js/app.557ce569.js" defer></script><script src="/notes-tips/assets/js/2.d0218362.js" defer></script><script src="/notes-tips/assets/js/22.3fdbb1e5.js" defer></script>
+  </body>
+</html>

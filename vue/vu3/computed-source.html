@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hello ;)</title>
+    <meta name="description" content="Just playing around">
+    <meta name="generator" content="VuePress 1.3.0">
+    
+    
+    <link rel="preload" href="/notes-tips/assets/css/0.styles.d0e609a8.css" as="style"><link rel="preload" href="/notes-tips/assets/js/app.557ce569.js" as="script"><link rel="preload" href="/notes-tips/assets/js/2.d0218362.js" as="script"><link rel="preload" href="/notes-tips/assets/js/21.c71aa5ff.js" as="script"><link rel="prefetch" href="/notes-tips/assets/js/10.5b08dcb9.js"><link rel="prefetch" href="/notes-tips/assets/js/11.43ade1ee.js"><link rel="prefetch" href="/notes-tips/assets/js/12.f8bc895e.js"><link rel="prefetch" href="/notes-tips/assets/js/13.24d9da50.js"><link rel="prefetch" href="/notes-tips/assets/js/14.251b784d.js"><link rel="prefetch" href="/notes-tips/assets/js/15.70e2dcbb.js"><link rel="prefetch" href="/notes-tips/assets/js/16.a770eeac.js"><link rel="prefetch" href="/notes-tips/assets/js/17.ec392fa7.js"><link rel="prefetch" href="/notes-tips/assets/js/18.6ad3cce7.js"><link rel="prefetch" href="/notes-tips/assets/js/19.c437d1ea.js"><link rel="prefetch" href="/notes-tips/assets/js/20.3818af9a.js"><link rel="prefetch" href="/notes-tips/assets/js/22.3fdbb1e5.js"><link rel="prefetch" href="/notes-tips/assets/js/23.62dfaa37.js"><link rel="prefetch" href="/notes-tips/assets/js/24.5fac8cff.js"><link rel="prefetch" href="/notes-tips/assets/js/25.2cf37cc2.js"><link rel="prefetch" href="/notes-tips/assets/js/26.52485140.js"><link rel="prefetch" href="/notes-tips/assets/js/27.636c97a8.js"><link rel="prefetch" href="/notes-tips/assets/js/28.a0f23262.js"><link rel="prefetch" href="/notes-tips/assets/js/3.570f6e99.js"><link rel="prefetch" href="/notes-tips/assets/js/4.b9e1cdb8.js"><link rel="prefetch" href="/notes-tips/assets/js/5.74eeff93.js"><link rel="prefetch" href="/notes-tips/assets/js/6.095a5b90.js"><link rel="prefetch" href="/notes-tips/assets/js/7.fc4a63bc.js"><link rel="prefetch" href="/notes-tips/assets/js/8.75653bce.js"><link rel="prefetch" href="/notes-tips/assets/js/9.62c92631.js">
+    <link rel="stylesheet" href="/notes-tips/assets/css/0.styles.d0e609a8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/notes-tips/" class="home-link router-link-active"><!----> <span class="site-name">Hello ;)</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/notes-tips/" class="nav-link">
+  Init
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/notes-tips/" class="nav-link">
+  Init
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/notes-tips/" class="sidebar-link">Tips documentation</a></li><li><a href="/notes-tips/javascript/" class="sidebar-link">Javascript</a></li><li><a href="/notes-tips/vue/" class="sidebar-link">Vue</a></li><li><a href="/notes-tips/docker/" class="sidebar-link">Docker</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>Computed Values &amp; Vue 3 Source
+As we’ve been building out our Reactivity example, you may have been wondering “why haven’t we used computed for our values where we’ve been using effect?” When looking at our example:</p> <p>let product = reactive({ price: 5, quantity: 2 })
+let salePrice = ref(0)
+let total = 0
+effect(() =&gt; {
+salePrice.value = product.price * 0.9
+})
+effect(() =&gt; {
+total = salePrice.value * product.quantity
+})
+It seems clear to me that if I was coding up Vue I would write both salePrice and total as computed properties. If you’re familiar with the Vue 3 composition API, you’re probably familiar with the computed syntax. If you’re not, maybe take our Vue 3 Essentials course. We might use the computed syntax like so (even though we haven’t defined it yet):</p> <p>let product = reactive({ price: 5, quantity: 2 })</p> <p>let salePrice = computed(() =&gt; {
+return product.price * 0.9
+})
+let total = computed(() =&gt; {
+return salePrice.value * product.quantity
+})
+Makes sense right? And notice how my salePrice computed property is included inside my total computed property, and that we access it using .value. This is our first clue to implementation. It looks like we’re creating another reactive reference. Here’s how we create our computed function:</p> <p>function computed(getter) {
+let result = ref()  // Create a new reactive reference</p> <p>effect(() =&gt; (result.value = getter())) // Set this value equal to the return value of the getter</p> <p>return result // return the reactive reference
+}
+That’s all there is to it. You can view / run the code in its entirety over on Github. Our code prints out:</p> <p>Before updated quantity total (should be 9) = 9 salePrice (should be 4.5) = 4.5
+After updated quantity total (should be 13.5) = 13.5 salePrice (should be 4.5) = 4.5
+After updated price total (should be 27) = 27 salePrice (should be 9) = 9
+Vue Reactivity without a Caveat
+It’s worth mentioning that we can do something with our reactive objects that was impossible with Vue 2. Specifically, we can add new reactive properties. Like so:</p> <p>...
+let product = reactive({ price: 5, quantity: 2 })
+...</p> <p>product.name = 'Shoes'
+effect(() =&gt; {
+console.log(<code>Product name is now ${product.name}</code>)
+})
+product.name = 'Socks'
+As you might expect, it prints out:</p> <p>Product name is now Shoes
+Product name is now Socks
+This was impossible with Vue 2 because of how Reactivity was implemented, adding getters and setters to individual object properties using Object.defineProperty. Now with Proxy we can add new properties no problem and they’re instantly reactive.</p> <p>Testing our code against Vue 3 Source
+You might be wondering, would this code work against Vue 3 source? So I cloned the vue-next repo (currently alpha 5), ran yarn install, then yarn build reactivity. This gave me a bunch of files in my packages/reactivity/dist/ . I then took the reactivity.cjs.js file I found there and moved it next to my example files, the ones on github, and wrote this up to use Vue’s Reactivity code:</p> <p>var { reactive, computed, effect } = require('./reactivity.cjs')</p> <p>// Exactly the same code here from before, without the definitions</p> <p>let product = reactive({ price: 5, quantity: 2 })</p> <p>let salePrice = computed(() =&gt; {
+return product.price * 0.9
+})</p> <p>let total = computed(() =&gt; {
+return salePrice.value * product.quantity
+})</p> <p>console.log(
+<code>Before updated quantity total (should be 9) = ${total.value} salePrice (should be 4.5) = ${salePrice.value}</code>
+)
+product.quantity = 3
+console.log(
+<code>After updated quantity total (should be 13.5) = ${total.value} salePrice (should be 4.5) = ${salePrice.value}</code>
+)
+product.price = 10
+console.log(
+<code>After updated price total (should be 27) = ${total.value} salePrice (should be 9) = ${salePrice.value}</code>
+)
+product.name = 'Shoes'
+effect(() =&gt; {
+console.log(<code>Product name is now ${product.name}</code>)
+})
+product.name = 'Socks'
+Ran this with node 08-vue-reactivity.js, and as expected, I got all the same results!</p> <p>Before updated quantity total (should be 9) = 9 salePrice (should be 4.5) = 4.5
+After updated quantity total (should be 13.5) = 13.5 salePrice (should be 4.5) = 4.5
+After updated price total (should be 27) = 27 salePrice (should be 9) = 9
+Product name is now Shoes
+Product name is now Socks
+Wow, so our reactivity system works as well as Vue! Well, at a basic level … yes, but in reality Vue’s version is MUCH more complex. Let’s take a look through the files that make up Vue 3’s Reactivity system, to begin to get familiar.</p> <p>Vue 3 Reactivity Files
+If we take a look inside the Vue 3 source, inside /packages/reactivity/src/ we’ll find the following files. Yes they are TypeScript (ts) files, but you should be able to read them (even if you don’t know TypeScript).</p> <p>effect.ts - Defines the effect function to encapsulate code that may contain reactive references and objects. Contains track which is called from get requests and trigger which is called from set requests.
+baseHandlers.ts - Contains the Proxy handlers like get and set, which call track and trigger (from effect.ts).
+reactive.ts - Contains the functionality for the reactive syntax which creates an ES6 Proxy using get and set (from basehandlers.ts).
+ref.ts - Defines how we create Reactive References, using object accessors (like we did). Also contains toRefs which converts reactive objects into a series of reactive references which access the original proxy.
+computed.ts - Defines the computed function using effect and object accessors (a little different than we did).
+There are a few more additional files, but these carry the core functionality. If you’re feeling like a challenge, you may want to dive into the source code. In the next two lessons we’ll speak to Evan You about how he implemented Reactivity in Vue 3 and give us a tour of the source himself.</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/notes-tips/assets/js/app.557ce569.js" defer></script><script src="/notes-tips/assets/js/2.d0218362.js" defer></script><script src="/notes-tips/assets/js/21.c71aa5ff.js" defer></script>
+  </body>
+</html>

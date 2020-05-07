@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Anatomía de una declaración CSS: Selectores, Propiedades y Valores | Hello ;)</title>
+    <meta name="description" content="Just playing around">
+    <meta name="generator" content="VuePress 1.3.0">
+    
+    
+    <link rel="preload" href="/notes-tips/assets/css/0.styles.d0e609a8.css" as="style"><link rel="preload" href="/notes-tips/assets/js/app.557ce569.js" as="script"><link rel="preload" href="/notes-tips/assets/js/2.d0218362.js" as="script"><link rel="preload" href="/notes-tips/assets/js/9.62c92631.js" as="script"><link rel="prefetch" href="/notes-tips/assets/js/10.5b08dcb9.js"><link rel="prefetch" href="/notes-tips/assets/js/11.43ade1ee.js"><link rel="prefetch" href="/notes-tips/assets/js/12.f8bc895e.js"><link rel="prefetch" href="/notes-tips/assets/js/13.24d9da50.js"><link rel="prefetch" href="/notes-tips/assets/js/14.251b784d.js"><link rel="prefetch" href="/notes-tips/assets/js/15.70e2dcbb.js"><link rel="prefetch" href="/notes-tips/assets/js/16.a770eeac.js"><link rel="prefetch" href="/notes-tips/assets/js/17.ec392fa7.js"><link rel="prefetch" href="/notes-tips/assets/js/18.6ad3cce7.js"><link rel="prefetch" href="/notes-tips/assets/js/19.c437d1ea.js"><link rel="prefetch" href="/notes-tips/assets/js/20.3818af9a.js"><link rel="prefetch" href="/notes-tips/assets/js/21.c71aa5ff.js"><link rel="prefetch" href="/notes-tips/assets/js/22.3fdbb1e5.js"><link rel="prefetch" href="/notes-tips/assets/js/23.62dfaa37.js"><link rel="prefetch" href="/notes-tips/assets/js/24.5fac8cff.js"><link rel="prefetch" href="/notes-tips/assets/js/25.2cf37cc2.js"><link rel="prefetch" href="/notes-tips/assets/js/26.52485140.js"><link rel="prefetch" href="/notes-tips/assets/js/27.636c97a8.js"><link rel="prefetch" href="/notes-tips/assets/js/28.a0f23262.js"><link rel="prefetch" href="/notes-tips/assets/js/3.570f6e99.js"><link rel="prefetch" href="/notes-tips/assets/js/4.b9e1cdb8.js"><link rel="prefetch" href="/notes-tips/assets/js/5.74eeff93.js"><link rel="prefetch" href="/notes-tips/assets/js/6.095a5b90.js"><link rel="prefetch" href="/notes-tips/assets/js/7.fc4a63bc.js"><link rel="prefetch" href="/notes-tips/assets/js/8.75653bce.js">
+    <link rel="stylesheet" href="/notes-tips/assets/css/0.styles.d0e609a8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/notes-tips/" class="home-link router-link-active"><!----> <span class="site-name">Hello ;)</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/notes-tips/" class="nav-link">
+  Init
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/notes-tips/" class="nav-link">
+  Init
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/notes-tips/" class="sidebar-link">Tips documentation</a></li><li><a href="/notes-tips/javascript/" class="sidebar-link">Javascript</a></li><li><a href="/notes-tips/vue/" class="sidebar-link">Vue</a></li><li><a href="/notes-tips/docker/" class="sidebar-link">Docker</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="anatomia-de-una-declaracion-css-selectores-propiedades-y-valores"><a href="#anatomia-de-una-declaracion-css-selectores-propiedades-y-valores" class="header-anchor">#</a> Anatomía de una declaración CSS: Selectores, Propiedades y Valores</h2> <p>Nuestros estilos con CSS se componen de:</p> <ul><li><p><strong>Selector:</strong> son la referencia a los elementos HTML que queremos estilizar. Los nombres de estas etiquetas van seguidas de una llave de apertura y otra de cierre ({}). Por ejemplo: <code>h1 {}</code>.</p></li> <li><p><strong>Propiedades:</strong> son el tipo de estilo que queremos darle a nuestros elementos. Van seguidas de dos puntos (😃. Las propiedades deben estar dentro de las llaves del selector que definimos anteriormente. Podemos escribir diferentes propiedades en un mismo selector. Por ejemplo: <code>h1 { color: }</code>.</p></li> <li><p><strong>Valores:</strong> son el estilo que queremos que tomen nuestros elementos HTML con respecto a una propiedad. Van seguidas de un punto y coma (😉. Por ejemplo:</p></li></ul> <div class="language- extra-class"><pre class="language-text"><code>h1 {
+  color: red;
+}
+</code></pre></div><h2 id="tipos-de-selectores-pseudo-clases-y-pseudo-elementos"><a href="#tipos-de-selectores-pseudo-clases-y-pseudo-elementos" class="header-anchor">#</a> Tipos de selectores, pseudo-clases y pseudo-elementos</h2> <ul><li><p>*(asterisco): Es el selector universal. Las propiedades se aplicaran a todos los elementos de nuestro HTML.</p></li> <li><p><strong>Tipo:</strong> Son selectores que se aplican a cierto elemento HTML en específico. Las propiedades se aplicaran a la etiqueta que queremos, por ejemplo p, body, html, div, etc. No es recomendable usarlos en app grandes</p></li> <li><p><strong>Clase:</strong> Si nuestras etiqueta de HTML tienen un atributo de class podemos usar ese valor o identificador para que los cambios en el CSS afecten únicamente a ese elemento.</p></li> <li><p><strong>ID:</strong> Es similar al anterior, si la etiqueta HTML tiene un ID podemos afectar solo ese elemento. No es aconsejable usar id</p></li> <li><p><strong>Las Pseudo-clases y Pseudo-elementos</strong> nos permiten ser aún más específicos con qué elemento o partes de nuestros elementos deben recibir los estilos.</p></li></ul> <p>Para usarlas debemos definir el selector base (por ejemplo, p) seguido de dos puntos y la pseudo-clase que queremos estilizar (por ejemplo: p:first-child). En el caso de los pseudo-elementos debemos usar el dos puntos 2 veces (p::first-letter).
+n-&gt; numerito cualquiera
+th-&gt; referencia a los números en inglés
+😁</p> <div class="language- extra-class"><pre class="language-text"><code>/* Asterisco (universal) */
+* {
+  margin: 0;
+}
+
+/* Tipo */
+h1 {
+  color: red;
+}
+
+/* Clase */
+.saludo {
+  font-size: 2em;
+}
+
+/* ID */
+#id {
+  border-radius: 20px;
+}
+
+/* Pseudo-clases */
+p:first-child {
+  color: white;
+}
+
+p:last-child {
+  color: purple;
+}
+
+p:nth-child(2n) {
+  color: red;
+}
+</code></pre></div><h2 id="modelo-de-caja-here"><a href="#modelo-de-caja-here" class="header-anchor">#</a> Modelo de caja <a href="https://devcode.la/tutoriales/modelo-caja-css/" target="_blank" rel="noopener noreferrer">here<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></h2> <p>Todos los elementos de HTML tienen un modelo de caja y esta compuesto por cuatro elementos: contenido, padding, border, margin.
+Padding siempre afecta al tamaño de la caja.</p> <ul><li><a href="https://colorhunt.co/" target="_blank" rel="noopener noreferrer">Color hunt<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li> <li>box-sixing: border-box //respeta el tamaño definido</li></ul> <p>Valores relativos y absolutos
+Los valores absolutos son, por ejemplo, centímetros, milímetros, pixeles y pulgadas. Se llaman de esta forma porque no tienen en cuenta a nadie más, no depende de la medida de otra unidad.</p> <p>Los valores relativas, llevan este nombre porque depende de otra unidad de medida o elemento. Por ejemplo, porcentajes, vmx, em, entre otros.</p> <p>Recuerda que podemos darle estilos a etiquetas HTML muy específicas indicando dónde se van a encontrar. Por ejemplo: si queremos darle estilos únicamente a la imagen que está dentro del header, podemos usar el selector css header img { ... }.</p> <h2 id="arquitecturas-css"><a href="#arquitecturas-css" class="header-anchor">#</a> Arquitecturas css</h2> <p>tienen que ser :</p> <ul><li>Predecible</li> <li>Reutilizable</li> <li>Mantenibles</li> <li>Escalable</li></ul> <h2 id="buenas-practicas"><a href="#buenas-practicas" class="header-anchor">#</a> Buenas prácticas</h2> <ul><li><p>Establecer reglas del equipo</p></li> <li><p>Explicar la estructura base</p></li> <li><p>Establecer estándares de codificación</p></li> <li><p>Evitar largas hojas de estilo</p></li> <li><p>Documentación</p></li> <li><p><strong>OOCSS:</strong> Object Oriented CSS. Css orientado a objetos.</p></li> <li><p><strong>BEM:</strong> Block element modifier</p></li> <li><p><strong>SMACSS:</strong> Scalable and Modular Architecture for Css</p></li> <li><p><strong>ITCSS:</strong> Inverted Triangle CSS, <a href="https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/" target="_blank" rel="noopener noreferrer">more<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></li> <li><p><strong>Atomic Design:</strong></p></li></ul> <h1 id="¿que-es-un-componente-analicemos-nuestros-disenos"><a href="#¿que-es-un-componente-analicemos-nuestros-disenos" class="header-anchor">#</a> ¿Qué es un componente? Analicemos nuestros diseños</h1> <p>Un componente, tanto en diseño como desarrollo web, es un elemento muy pequeño que tiene la capacidad de ser reutilizado en diferentes partes de una aplicación. Por ejemplo: botones, iconos, cards, entre otras. Puedes apreciarlos en las plataformas que visitas todos los días: Twitter, Facebook, Platzi, YouTube y muchas más.</p> <p>El selector ~ de CSS nos permite dar estilos a todos que cumplan los requisitos y sean “hermanos directos”, es decir, que tengan el mismo elemento padre.</p> <div class="language- extra-class"><pre class="language-text"><code>.PrimerTitulo ~ h2 {
+  background-color: red;
+}
+</code></pre></div><p>También existe el selector +. Solo aplica los estilos al primer hermano directo de nuestros elementos.</p> <div class="language- extra-class"><pre class="language-text"><code>.PrimerTitulo + h2 {
+  background-color: blue;
+}
+</code></pre></div><h2 id="flexbox"><a href="#flexbox" class="header-anchor">#</a> Flexbox</h2> <p>https://css-tricks.com/snippets/css/a-guide-to-flexbox/</p> <p>https://flexboxfroggy.com/</p> <p>Con CSS Grid podemos maquetar todo el layout/estructura general de nuestro sitio para que se adapten a diferentes tamaños de pantalla, lo que conocemos como diseño responsivo.</p> <p>Al igual que Flebox, tenemos propiedades diferentes, tanto para el contenedor como para los elementos, y podemos usarlos dependiendo de nuestras necesidades.</p> <h2 id="css-grid"><a href="#css-grid" class="header-anchor">#</a> Css grid</h2> <p>https://labs.jensimmons.com/
+https://cssgridgarden.com/</p> <h2 id="media-queries"><a href="#media-queries" class="header-anchor">#</a> Media queries</h2> <p>Los media queries nos ayudan a ajustar nuestros diseño a dispositivos más pequeños como tablets y celulares.</p> <p>Es recomendable seguir la metodología de Mobile First: comenzar a diseñar para el dispositivo más pequeño e ir creando las media queries para las pantallas más grandes.</p> <h2 id="preprocesador"><a href="#preprocesador" class="header-anchor">#</a> Preprocesador</h2> <p>Un preprocesador CSS es un programa que te permite generar CSS a partir de la syntax única del preprocesador. Existen varios preprocesadores CSS de los cuales escoger, sin embargo la mayoría de preprocesadores CSS añadiran algunas características que no existen en CSS puro, como variable, mixins, selectores anidados, entre otros. Estas características hacen la estructura de CSS más legible y fácil de mantener.</p> <p>Para utilizar un preprocesador CSS debes instalar un compilador CSS en tu web  server.</p> <p>sass</p> <div class="language- extra-class"><pre class="language-text"><code>npm install -g sass
+</code></pre></div><p>https://github.com/teffcode/sass-workshop</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/notes-tips/assets/js/app.557ce569.js" defer></script><script src="/notes-tips/assets/js/2.d0218362.js" defer></script><script src="/notes-tips/assets/js/9.62c92631.js" defer></script>
+  </body>
+</html>

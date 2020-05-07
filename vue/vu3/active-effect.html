@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hello ;)</title>
+    <meta name="description" content="Just playing around">
+    <meta name="generator" content="VuePress 1.3.0">
+    
+    
+    <link rel="preload" href="/notes-tips/assets/css/0.styles.d0e609a8.css" as="style"><link rel="preload" href="/notes-tips/assets/js/app.557ce569.js" as="script"><link rel="preload" href="/notes-tips/assets/js/2.d0218362.js" as="script"><link rel="preload" href="/notes-tips/assets/js/20.3818af9a.js" as="script"><link rel="prefetch" href="/notes-tips/assets/js/10.5b08dcb9.js"><link rel="prefetch" href="/notes-tips/assets/js/11.43ade1ee.js"><link rel="prefetch" href="/notes-tips/assets/js/12.f8bc895e.js"><link rel="prefetch" href="/notes-tips/assets/js/13.24d9da50.js"><link rel="prefetch" href="/notes-tips/assets/js/14.251b784d.js"><link rel="prefetch" href="/notes-tips/assets/js/15.70e2dcbb.js"><link rel="prefetch" href="/notes-tips/assets/js/16.a770eeac.js"><link rel="prefetch" href="/notes-tips/assets/js/17.ec392fa7.js"><link rel="prefetch" href="/notes-tips/assets/js/18.6ad3cce7.js"><link rel="prefetch" href="/notes-tips/assets/js/19.c437d1ea.js"><link rel="prefetch" href="/notes-tips/assets/js/21.c71aa5ff.js"><link rel="prefetch" href="/notes-tips/assets/js/22.3fdbb1e5.js"><link rel="prefetch" href="/notes-tips/assets/js/23.62dfaa37.js"><link rel="prefetch" href="/notes-tips/assets/js/24.5fac8cff.js"><link rel="prefetch" href="/notes-tips/assets/js/25.2cf37cc2.js"><link rel="prefetch" href="/notes-tips/assets/js/26.52485140.js"><link rel="prefetch" href="/notes-tips/assets/js/27.636c97a8.js"><link rel="prefetch" href="/notes-tips/assets/js/28.a0f23262.js"><link rel="prefetch" href="/notes-tips/assets/js/3.570f6e99.js"><link rel="prefetch" href="/notes-tips/assets/js/4.b9e1cdb8.js"><link rel="prefetch" href="/notes-tips/assets/js/5.74eeff93.js"><link rel="prefetch" href="/notes-tips/assets/js/6.095a5b90.js"><link rel="prefetch" href="/notes-tips/assets/js/7.fc4a63bc.js"><link rel="prefetch" href="/notes-tips/assets/js/8.75653bce.js"><link rel="prefetch" href="/notes-tips/assets/js/9.62c92631.js">
+    <link rel="stylesheet" href="/notes-tips/assets/css/0.styles.d0e609a8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/notes-tips/" class="home-link router-link-active"><!----> <span class="site-name">Hello ;)</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/notes-tips/" class="nav-link">
+  Init
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/notes-tips/" class="nav-link">
+  Init
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/notes-tips/" class="sidebar-link">Tips documentation</a></li><li><a href="/notes-tips/javascript/" class="sidebar-link">Javascript</a></li><li><a href="/notes-tips/vue/" class="sidebar-link">Vue</a></li><li><a href="/notes-tips/docker/" class="sidebar-link">Docker</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>activeEffect &amp; ref
+In this lesson we’ll continue to build out our reactivity code by fixing a small bug and then implementing reactive references, much like you might have seen in Vue 3. The bottom of our current code from the last lesson looks like this:</p> <p>...
+let product = reactive({ price: 5, quantity: 2 })
+let total = 0</p> <p>let effect = () =&gt; {
+total = product.price * product.quantity
+}
+effect()</p> <p>console.log(total)</p> <p>product.quantity = 3</p> <p>console.log(total)
+The problem arrives when we add code which GETs a property from our reactive object, like so:</p> <p>console.log('Updated quantity to = ' + product.quantity)
+The issue here is that track and all of it’s function will get called, even if we’re not inside an effect. We only want to look up and record the effect if get is called inside the active effect.</p> <p>Solution: activeEffect
+To solve this problem, we’ll first create an activeEffect, a global variable we’ll store the currently running effect in. We’ll then set this inside a new function called effect.</p> <p>let activeEffect = null // The active effect running
+...
+function effect(eff) {
+activeEffect = eff  // Set this as the activeEffect
+activeEffect()      // Run it
+activeEffect = null // Unset it
+}</p> <p>let product = reactive({ price: 5, quantity: 2 })
+let total = 0</p> <p>effect(() =&gt; {
+total = product.price * product.quantity
+})</p> <p>effect(() =&gt; {
+salePrice = product.price * 0.9
+})</p> <p>console.log(
+<code>Before updated total (should be 10) = ${total} salePrice (should be 4.5) = ${salePrice}</code>
+)</p> <p>product.quantity = 3</p> <p>console.log(
+<code>After updated total (should be 15) = ${total} salePrice (should be 4.5) = ${salePrice}</code>
+)</p> <p>product.price = 10</p> <p>console.log(
+<code>After updated total (should be 30) = ${total} salePrice (should be 9) = ${salePrice}</code>
+)
+Notice that we no longer need to call the effect manually. It’s getting called automatically inside our new effect function. Notice I’ve also added a second effect, because why not 😁. I’ve also updated our console.logs to look more like tests, so we can verify the proper output. You can try out all the code yourself by grabbing it off github.</p> <p>So good so far, but there’s one more change we need to make, and that’s inside the track function. It needs to use our new activeEffect.</p> <p>function track(target, key) {
+if (activeEffect) { // &lt;------ Check to see if we have an activeEffect
+let depsMap = targetMap.get(target)
+if (!depsMap) {
+targetMap.set(target, (depsMap = new Map()))
+}
+let dep = depsMap.get(key)
+if (!dep) {
+depsMap.set(key, (dep = new Set())) // Create a new Set
+}
+dep.add(activeEffect) // &lt;----- Add activeEffect to dependency map
+}
+}
+Great, now if we run our code we properly get:</p> <p>Before updated total (should be 10) = 10 salePrice (should be 4.5) = 4.5
+After updated total (should be 15) = 15 salePrice (should be 4.5) = 4.5
+After updated total (should be 30) = 30 salePrice (should be 9) = 9
+If you want to walk through this code executing line by line, definitely check out the video.</p> <p>The Need for Ref
+When I was coding up this challenge I realized that the way I was calculating total might make a little more sense if it used the salePrice rather than price, like so:</p> <p>effect(() =&gt; {
+total = salePrice * product.quantity
+})
+If we were creating a real store, we’d probably calculate the total based on the salePrice. However, this code wouldn’t work reactively. Specifically, when product.price is updated, it will reactively recalculate the salePrice with this effect:</p> <p>effect(() =&gt; {
+salePrice = product.price * 0.9
+})
+But since salePrice isn’t reactive, the effect with total won’t get recalculated. Our first effect above won’t get re-run. We need some way to make salePrice reactive, and it’d be nice if we didn’t have to wrap it in another reactive object. If you’re familiar with the Composition API, which I teach in the Vue 3 Essentials Course, you might be thinking that I should use ref to create a Reactive Reference. Let’s do this:</p> <p>let product = reactive({ price: 5, quantity: 2 })
+let salePrice = ref(0)
+let total = 0
+According to the Vue documentation, a reactive reference takes an inner value and returns a reactive and mutable ref object. The ref object has a single property .value that points to the inner value. So we’d need to change around our effects a little to use .value.</p> <p>effect(() =&gt; {
+total = salePrice.value * product.quantity
+})</p> <p>effect(() =&gt; {
+salePrice.value = product.price * 0.9
+})
+Our code should work now, properly updating the total when salePrice is updated. However, we still need to define ref. There’s two ways we could do it.</p> <ol><li>Defining Ref with Reactive
+First, we could simply use reactive as we’ve defined it:</li></ol> <p>function ref(intialValue) {
+return reactive({ value: initialValue })
+}
+However, this isn’t how Vue 3 defines ref with primitives, so let’s implement it differently.</p> <p>Understanding JavaScript Object Accessors
+In order to understand how Vue 3 defines ref, we first need to make sure we are familiar with object accessors. These are sometimes also known as JavaScript computed properties (not to be confused with Vue computed properties). Below you can see a simple example which uses Object Accessors:</p> <p>let user = {
+firstName: 'Gregg',
+lastName: 'Pollack',</p> <p>get fullName() {
+return <code>${this.firstName} ${this.lastName}</code>
+},</p> <p>set fullName(value) {
+[this.firstName, this.lastName] = value.split(' ')
+},
+}</p> <p>console.log(<code>Name is ${user.fullName}</code>)
+user.fullName = 'Adam Jahr'
+console.log(<code>Name is ${user.fullName}</code>)
+The get and set lines are object accessors to get fullName and set fullName accordingly. This is plain JavaScript, and is not a feature of Vue.</p> <ol start="2"><li>Defining Ref with Object Accessors
+Using Object Accessors, along with our track and trigger actions, we can now define ref using:</li></ol> <p>function ref(raw) {
+const r = {
+get value() {
+track(r, 'value')
+return raw
+},
+set value(newVal) {
+raw = newVal
+trigger(r, 'value')
+},
+}
+return r
+}
+That’s all there is to it. Now when we run the following code:</p> <p>...
+function ref(raw) {
+const r = {
+get value() {
+track(r, 'value')
+return raw
+},
+set value(newVal) {
+raw = newVal
+trigger(r, 'value')
+},
+}
+return r
+}</p> <p>function effect(eff) {
+activeEffect = eff
+activeEffect()
+activeEffect = null
+}</p> <p>let product = reactive({ price: 5, quantity: 2 })
+let salePrice = ref(0)
+let total = 0</p> <p>effect(() =&gt; {
+total = salePrice.value * product.quantity
+})</p> <p>effect(() =&gt; {
+salePrice.value = product.price * 0.9
+})</p> <p>console.log(
+<code>Before updated quantity total (should be 9) = ${total} salePrice (should be 4.5) = ${salePrice.value}</code>
+)
+product.quantity = 3
+console.log(
+<code>After updated quantity total (should be 13.5) = ${total} salePrice (should be 4.5) = ${salePrice.value}</code>
+)
+product.price = 10
+console.log(
+<code>After updated price total (should be 27) = ${total} salePrice (should be 9) = ${salePrice.value}</code>
+)
+We get what we would expect:</p> <p>Before updated total (should be 10) = 10 salePrice (should be 4.5) = 4.5
+After updated total (should be 13.5) = 13.5 salePrice (should be 4.5) = 4.5
+After updated total (should be 27) = 27 salePrice (should be 9) = 9
+Our salePrice is now reactive and total gets updated when it changes!</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/notes-tips/assets/js/app.557ce569.js" defer></script><script src="/notes-tips/assets/js/2.d0218362.js" defer></script><script src="/notes-tips/assets/js/20.3818af9a.js" defer></script>
+  </body>
+</html>

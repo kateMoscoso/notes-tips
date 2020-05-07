@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Understanding Reactivity | Hello ;)</title>
+    <meta name="description" content="Just playing around">
+    <meta name="generator" content="VuePress 1.3.0">
+    
+    
+    <link rel="preload" href="/notes-tips/assets/css/0.styles.d0e609a8.css" as="style"><link rel="preload" href="/notes-tips/assets/js/app.557ce569.js" as="script"><link rel="preload" href="/notes-tips/assets/js/2.d0218362.js" as="script"><link rel="preload" href="/notes-tips/assets/js/24.5fac8cff.js" as="script"><link rel="prefetch" href="/notes-tips/assets/js/10.5b08dcb9.js"><link rel="prefetch" href="/notes-tips/assets/js/11.43ade1ee.js"><link rel="prefetch" href="/notes-tips/assets/js/12.f8bc895e.js"><link rel="prefetch" href="/notes-tips/assets/js/13.24d9da50.js"><link rel="prefetch" href="/notes-tips/assets/js/14.251b784d.js"><link rel="prefetch" href="/notes-tips/assets/js/15.70e2dcbb.js"><link rel="prefetch" href="/notes-tips/assets/js/16.a770eeac.js"><link rel="prefetch" href="/notes-tips/assets/js/17.ec392fa7.js"><link rel="prefetch" href="/notes-tips/assets/js/18.6ad3cce7.js"><link rel="prefetch" href="/notes-tips/assets/js/19.c437d1ea.js"><link rel="prefetch" href="/notes-tips/assets/js/20.3818af9a.js"><link rel="prefetch" href="/notes-tips/assets/js/21.c71aa5ff.js"><link rel="prefetch" href="/notes-tips/assets/js/22.3fdbb1e5.js"><link rel="prefetch" href="/notes-tips/assets/js/23.62dfaa37.js"><link rel="prefetch" href="/notes-tips/assets/js/25.2cf37cc2.js"><link rel="prefetch" href="/notes-tips/assets/js/26.52485140.js"><link rel="prefetch" href="/notes-tips/assets/js/27.636c97a8.js"><link rel="prefetch" href="/notes-tips/assets/js/28.a0f23262.js"><link rel="prefetch" href="/notes-tips/assets/js/3.570f6e99.js"><link rel="prefetch" href="/notes-tips/assets/js/4.b9e1cdb8.js"><link rel="prefetch" href="/notes-tips/assets/js/5.74eeff93.js"><link rel="prefetch" href="/notes-tips/assets/js/6.095a5b90.js"><link rel="prefetch" href="/notes-tips/assets/js/7.fc4a63bc.js"><link rel="prefetch" href="/notes-tips/assets/js/8.75653bce.js"><link rel="prefetch" href="/notes-tips/assets/js/9.62c92631.js">
+    <link rel="stylesheet" href="/notes-tips/assets/css/0.styles.d0e609a8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/notes-tips/" class="home-link router-link-active"><!----> <span class="site-name">Hello ;)</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/notes-tips/" class="nav-link">
+  Init
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/notes-tips/" class="nav-link">
+  Init
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/notes-tips/" class="sidebar-link">Tips documentation</a></li><li><a href="/notes-tips/javascript/" class="sidebar-link">Javascript</a></li><li><a href="/notes-tips/vue/" class="sidebar-link">Vue</a></li><li><a href="/notes-tips/docker/" class="sidebar-link">Docker</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h3 id="understanding-reactivity"><a href="#understanding-reactivity" class="header-anchor">#</a> Understanding Reactivity</h3> <p>Vue’s reactivity system can look like magic when you see it working for the first time.</p> <p>Take this simple app:</p> <div class="language- extra-class"><pre class="language-text"><code>&lt;div id=&quot;app&quot;&gt;
+  &lt;div&gt;Price: ${{ product.price }}&lt;/div&gt;
+  &lt;div&gt;Total: ${{ product.price * product.quantity }}&lt;/div&gt;
+  &lt;div&gt;Taxes: ${{ totalPriceWithTax }}&lt;/div&gt;
+&lt;/div&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/vue&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      product: {
+        price: 5.00,
+        quantity: 2
+      }
+    },
+    computed: {
+      totalPriceWithTax() {
+        return this.product.price * this.product.quantity * 1.03
+      }
+    }
+  })
+&lt;/script&gt;
+</code></pre></div><p>And somehow Vue’s Reactivity system just knows that if <code>price</code> changes, it should do three things:</p> <ul><li>Update the <code>price</code> value on our webpage.</li> <li>Recalculate the expression that multiplies <code>price * quantity</code>, and update the page.</li> <li>Call the <code>totalPriceWithTax</code> function again and update the page.</li></ul> <p>But wait, I hear you wonder, how does Vue’s Reactivity system know what to update when the <code>price</code> changes, and how does it keep track of everything?</p> <p><strong>This is not how JavaScript programming usually works</strong></p> <p>Unfortunately, JavaScript is procedural, not reactive, so this doesn’t work in real life. In order to make total reactive, we have to use JavaScript to make things behave differently.</p> <p>Solution
+First off, we need some way to tell our application,* “Store the code (effect) I’m about to run, I may need you to run it at another time.”* Then we’ll want to run the code, and if price or quantity variables get updated, run the stored code again.</p> <p>We might do this by recording the function (effect) so we can run it again.</p> <div class="language- extra-class"><pre class="language-text"><code>let product = { price: 5, quantity: 2 }
+let total = 0
+
+let effect = function () { 
+  total = product.price * product.quantity
+})
+
+track() // Remember this in case we want to run it later
+effect() // Also go ahead and run it
+</code></pre></div><p>Notice that we store an anonymous function inside the effect variable, and then call a track function. Using the ES6 arrow syntax I could also write this as:</p> <p><code>let effect = () =&gt; { total = product.price * product.quantity }</code></p> <p>In order to define <code>track</code>, we need a place to store our effects, we may have many of them. We’ll create a variable called <code>dep</code>, as in dependency. We call it dependency because typically with the Observer design pattern a dependency has subscribers (in our case effects) which will get notified when an object changes state. We might make dependency a class with an array of subscribers, like we did in the Vue 2 version of this tutorial. However, since all it needs to store is a set of effects, we can simply create a Set.</p> <div class="language- extra-class"><pre class="language-text"><code>let dep = new Set() // Our object tracking a list of effects
+</code></pre></div><p>Then our track function can simply add our effects to this collection:</p> <div class="language- extra-class"><pre class="language-text"><code>function track () {
+  dep.add(effect) // Store the current effect
+}
+</code></pre></div><p>In case you’re not familiar, the difference between a JavaScript Array and Set, is that a Set cannot have duplicate values and it doesn’t use an index like arrays.</p> <p>We’re storing the <code>effect</code> (in our case the <code>{ total = price * quantity }</code>) so we can run it later. Here’s a visualization this dep Set:</p> <p>Let’s write a trigger function that runs all the things we’ve recorded.</p> <div class="language- extra-class"><pre class="language-text"><code>function trigger() { 
+  dep.forEach(effect =&gt; effect()) 
+}
+</code></pre></div><p>This goes through all the anonymous functions we have stored inside the dep Set and executes each of them. Then in our code, we can just:</p> <div class="language- extra-class"><pre class="language-text"><code>product.price = 20
+console.log(total) // =&gt; 10
+trigger()
+console.log(total) // =&gt; 40
+</code></pre></div><p>Simple enough, right? Here’s the code in its entirety if you need to read through and try to grasp it one more time.</p> <div class="language- extra-class"><pre class="language-text"><code>let product = { price: 5, quantity: 2 }
+let total = 0
+let dep = new Set()
+
+function track() {
+  dep.add(effect)
+}
+
+function trigger() {
+  dep.forEach(effect =&gt; effect())
+}
+
+let effect = () =&gt; {
+  total = product.price * product.quantity
+}
+
+track()
+effect()
+
+product.price = 20
+console.log(total) // =&gt; 10
+
+trigger()
+console.log(total) // =&gt; 40
+</code></pre></div><h3 id="problem-multiple-properties"><a href="#problem-multiple-properties" class="header-anchor">#</a> Problem: Multiple Properties</h3> <p>We could go on tracking effects as needed, but our reactive objects are going to have different properties, and those properties each need their own <code>dep</code> (which is a set of effects). Take a look at our object here:</p> <p><code>let product = { price: 5, quantity: 2 }</code></p> <p>Our <code>price</code> property needs it’s own dep (set of <code>effects</code>) and our <code>quantity</code> needs it’s own <code>dep</code> (set of <code>effects</code>). Let’s build out our solution to properly record these.</p> <h3 id="solution-depsmap"><a href="#solution-depsmap" class="header-anchor">#</a> Solution: depsMap</h3> <p>When we call track or trigger we now need to know which property in our object we’re targeting (<code>price</code> or <code>quantity</code>). To do this we’ll create a <code>depsMap</code>, which is of type Map (think keys and values). Here’s how we might visualize it:</p> <p>Notice how the <code>depsMap</code> has a key which will be the property name we want to add (or track) a new <code>effect</code> on. So we’ll need to send in this key to the <code>track</code> function.</p> <div class="language- extra-class"><pre class="language-text"><code>const depsMap = new Map()
+function track(key) {
+  // Make sure this effect is being tracked.
+  let dep = depsMap.get(key) // Get the current dep (effects) that need to be run when this key (property) is set
+  if (!dep) {
+    // There is no dep (effects) on this key yet
+    depsMap.set(key, (dep = new Set())) // Create a new Set
+  }
+  dep.add(effect) // Add effect to dep
+}
+  }
+function trigger(key) {
+  let dep = depsMap.get(key) // Get the dep (effects) associated with this key
+  if (dep) { // If they exist
+    dep.forEach(effect =&gt; {
+      // run them all
+      effect()
+    })
+  }
+}
+
+let product = { price: 5, quantity: 2 }
+let total = 0
+
+let effect = () =&gt; {
+  total = product.price * product.quantity
+}
+
+track('quantity')
+effect()
+console.log(total) // --&gt; 10
+
+product.quantity = 3
+trigger('quantity')
+console.log(total) // --&gt; 40
+</code></pre></div><h3 id="problem-multiple-reactive-objects"><a href="#problem-multiple-reactive-objects" class="header-anchor">#</a> Problem: Multiple Reactive Objects</h3> <p>This works great, until we have multiple reactive objects (more than just product) which need to track effects. Now we need a way of storing a depsMap for each object (ex. product). We need another Map, one for each object, but what would be the key? If we use a WeakMap we can actually use the objects themselves as the key. WeakMap is a JavaScript Map that uses only objects as the key. For example:</p> <p>let product = { price: 5, quantity: 2 }
+const targetMap = new WeakMap()
+targetMap.set(product, &quot;example code to test&quot;)
+console.log(targetMap.get(product)) // ---&gt; &quot;example code to test&quot;
+Obviously this isn’t the code we’re going to use, but I wanted to show you how our targetMap uses our product object as the key. We call our WeakMap targetMap because we’ll consider target the object we’re targeting. There’s another reason it’s called target which will become more obvious in the next lesson. Here is what we have visualized:</p> <p>When we call track or trigger we now need to know which object we’re targeting. So, we’ll send in both the target and the key when we call it.</p> <p>const targetMap = new WeakMap() // targetMap stores the effects that each object should re-run when it's updated</p> <p>function track(target, key) {
+// We need to make sure this effect is being tracked.
+let depsMap = targetMap.get(target) // Get the current depsMap for this target</p> <p>if (!depsMap) {
+// There is no map.
+targetMap.set(target, (depsMap = new Map())) // Create one
+}</p> <p>let dep = depsMap.get(key) // Get the current dependencies (effects) that need to be run when this is set
+if (!dep) {
+// There is no dependencies (effects)
+depsMap.set(key, (dep = new Set())) // Create a new Set
+}</p> <p>dep.add(effect) // Add effect to dependency map
+}</p> <p>function trigger(target, key) {
+const depsMap = targetMap.get(target) // Does this object have any properties that have dependencies (effects)
+if (!depsMap) {
+return
+}</p> <p>let dep = depsMap.get(key) // If there are dependencies (effects) associated with this
+if (dep) {
+dep.forEach(effect =&gt; {
+// run them all
+effect()
+})
+}
+}</p> <p>let product = { price: 5, quantity: 2 }
+let total = 0
+let effect = () =&gt; {
+total = product.price * product.quantity
+}</p> <p>track(product, 'quantity')
+effect()
+console.log(total) // --&gt; 10</p> <p>product.quantity = 3
+trigger(product, 'quantity')
+console.log(total) // --&gt; 15
+So now we have a very effective way of tracking the dependencies on multiple objects, this is a big piece of the puzzle when building our reactivity system. Give yourself a pat on the back. The battle is half over. In the next lesson we will discover how to call track and trigger automatically using ES6 proxy.</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/notes-tips/assets/js/app.557ce569.js" defer></script><script src="/notes-tips/assets/js/2.d0218362.js" defer></script><script src="/notes-tips/assets/js/24.5fac8cff.js" defer></script>
+  </body>
+</html>
