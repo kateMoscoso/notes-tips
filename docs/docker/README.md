@@ -216,7 +216,7 @@ docker run --rm -p 3000:3000 app
 ```
 CMD ["npx", "nodemon", "index.js"]
 
-docker run --rm -p 3000:3000 {{path}:/usr/src testapp
+docker run --rm -p 3000:3000 {{path}}:/usr/src testapp
 ```
 
 * Docker networking 
