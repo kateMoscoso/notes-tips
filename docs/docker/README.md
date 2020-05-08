@@ -270,5 +270,105 @@ docker-compose exec app bash
 docker-compose down
 ``` 
 
+```
+version: "3.8"
+
+services:
+  connect_mongo:
+    build: .
+    environment:
+      MONGO_URL: "mongodb://dbmongo:27017/test"
+    depends_on:
+      - dbmongo
+    ports:
+      - "3000-3010:3000"
+    volumes:
+      - .:/usr/src/
+      - /usr/src/node_modules
+    networks:
+      - app_net
+
+  balancer:
+    image: nginx:latest
+    depends_on:
+      - connect_mongo
+    ports:
+      - "8005:8005"
+    volumes:
+      - {{path}}:/etc/nginx/:ro
+    network_mode: "host"
+  
+  dbmongo:
+    image: mongo
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.238.0/24"
+
+  
+```
+
+* ` build: .` configuracion del Dockerfile
+* `volumes` descripcion como queremos usar los volumenes
+  * `/usr/src/node_modules` para no sobreescribir el node_modules
+
+```
+docker-compose up -d //reconfigurar si hay cambios
+docker-compose scale app-4 //escalar a que tenga 4 contenedores, es necesario poner  un rango de puerto
+```
+
+.dockerignore // para no meter ficheros que no necesito
+
+## Docker multi stage
+RUN npm install --only=production
+RUN npm install --only=development
+
+```
+docker buil -t app -f build/development.Dockerfile .
+```
+
+
+```
+OPY ["package.json","package-lock.json", "/usr/src/"]
+
+WORKDIR /usr/src
+
+RUN npm install --only=production
+
+COPY [".", "/usr/src/"]
+
+RUN npm install --only=development
+RUN npm test
+
+
+# Build Stage 2
+# This build takes the production build from staging build
+#
+FROM node:10
+
+COPY ["package.json","package-lock.json", "/usr/src/"]
+
+WORKDIR /usr/src/app
+
+RUN npm install --only=production
+
+COPY --from=builder ["/usr/src/index.js", "/usr/src"]
+
+EXPOSE 3000
+
+CMD ["node", "index.js"]
+```
+
+[Docker hub](https://hub.docker.com/_/docker/)
+
+docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock docker:18.06.1-ce
+
+
+
 *Notes:* *Docker esta escrito en **GO***
 
