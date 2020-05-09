@@ -10,16 +10,22 @@
 docker run hello-world
 ```
 
-La arquitectura de Docker funciona cliente - servidor y además utiliza `daemon` al conectarse con los contenedores.
+La arquitectura de Docker funciona cliente - servidor. El cliente utiliza `daemon` al conectarse con los contenedores.
+
+Cuando ejecutamos `docker run hello-world`, el cliente de docker le dice al daemon de docker que corra un contenedor usando la descripción de hello-world; éste recibe dicho pedido, crea un contenedor si tiene dicha descripción, y si no primero trata de obtenerla. Si lo logra, crea y ejecuta el contenedor.
 
 Client -->  daemon --> containers
 
 ## Contenedores
+
 Un `contenedor` es una entidad lógica, una agrupación de procesos que se ejecutan de forma nativa como cualquier otra aplicación en la máquina host.
 
-Un contenedor ejecuta sus procesos de forma nativa. Lo único que comparte el contenedor con la máquina es el `kernel` del sistema operativo
+Un contenedor ejecuta sus procesos de forma nativa. Lo único que comparte el contenedor con la máquina es el `kernel` del sistema operativo.
 
-https://itnext.io/chroot-cgroups-and-namespaces-an-overview-37124d995e3d
+Los contenedores están aislados del sistema y a nivel de red, cada contenedor tiene su propia stack de net y sus propios puertos.
+
+
+[chroot, cgroups and namespaces](https://itnext.io/chroot-cgroups-and-namespaces-an-overview-37124d995e3d)
 
 
 * Para listar todos los contenedores de Docker, utilizamos el comando:
@@ -46,8 +52,8 @@ docker inspect -f '{{ json .Config.Env }}' nombreDelContenedor
 docker rename oldName newName
 ``` 
 
-* no se pueden repetir los nombres pero si los id
-* cada docker run genera un contenedor nuevo
+no se pueden repetir los nombres pero si los id. Cada docker run genera un contenedor nuevo
+
 
 ```
 docker logs nombre_contenedor
@@ -56,10 +62,12 @@ docker rm -f $(docker ps -aq) // borra dockers de la lista
 ```
 
 * Levantar imagen de ubuntu
+
 ```
 docker run ubuntu
 docker run -it ubuntu // hacerlo de forma interactiva con la terminal
 ```
+
 * Comandos dentro de la imagen ubuntu
 
 ```
@@ -69,7 +77,13 @@ cat /etc/lsb-release
 exit
 ```
 
-## Ciclo de vida de los contenedores
+* Salir imagen 
+
+```
+exit
+```
+
+* Ejecutar comando contenedor
 
 ```
 docker run ubuntu tail -f /dev/null
@@ -83,14 +97,15 @@ docker exec -it nombre_contenedor bash
 
 ```
 ps -fea  // ver pid
-docker rm -f nombre_contenedor // borra contenedor
+docker rm -f nombre_contenedor // borrar contenedor
 docker kill nombre_contenedor // matar contenedor
 ```
-
 
 ## Exponiendo contenedores al mundo exterior
 
 Debemos redirigir los puertos del contenedor a los de la computadora y lo podemos hacer al utilizar este comando:
+
+`docker run -d --name server -p 8080:00  nombreDelContenedor`
 
 --detach // si tiene un proceso que tiene output, no me interesa el output
 
@@ -130,9 +145,9 @@ Esta herramienta nos permite recuperar datos que podíamos dar por perdido.
 
 Existen tres maneras de hacer permanencia de datos:
 
-Bind mount
-Volume
-tmpfs mount
+* Bind mount
+* Volume
+* tmpfs mount
 
 ```
  docker volume ls
@@ -144,11 +159,13 @@ tmpfs mount
  mongo
  exit
 ```
+
 ## Imagenes
 
-Imágenes son fundamentalmente plantillas o templates. Una imagen esta construida sobre ua una capa base y capas por encima
+Imágenes son fundamentalmente plantillas o templates. Una imagen esta construida sobre una capa base y capas por encima
 
-* Obtener iamages 
+* Obtener images 
+
 ```
 docker pull redis
 docker image ls
@@ -162,7 +179,7 @@ docker pull ubuntu:18.04
 
 Para  crear nuestras propias imágenes, necesitamos un archivo llamado DockerFile que es lo que utiliza Docker para crear imágenes.
 
-**Es importante que el DockerFile siempre empiece con un ““FROM”” sino, no va a funcionar. **
+**Es importante que el DockerFile siempre empiece con un `FROM` sino, no va a funcionar. **
 
 El flujo para construir en Docker siempre es así:
 Dockerfile –> **build ** –> Imágen –> run --> Contenedor
@@ -174,6 +191,7 @@ ls -lac /usr/src
 docker tag ubuntu:test nilya4/ubuntu:test
 docker push nilya4/ubuntu:test
 ```
+
 * Historico imagen
 
 ```
@@ -371,4 +389,3 @@ docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock docker:18.06.1-
 
 
 *Notes:* *Docker esta escrito en **GO***
-
