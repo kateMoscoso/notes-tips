@@ -1,10 +1,12 @@
-## Install
+## Getting Started
+
+### Install
 
 ```
   https://docs.docker.com/engine/install/ubuntu/
 ```
 
-## Run hello world
+### Run hello world
 
 ```
 docker run hello-world
@@ -16,14 +18,15 @@ Cuando ejecutamos `docker run hello-world`, el cliente de docker le dice al daem
 
 Client -->  daemon --> containers
 
-## Contenedores
+## Conceptos
+
+### Contenedores
 
 Un `contenedor` es una entidad lógica, una agrupación de procesos que se ejecutan de forma nativa como cualquier otra aplicación en la máquina host.
 
 Un contenedor ejecuta sus procesos de forma nativa. Lo único que comparte el contenedor con la máquina es el `kernel` del sistema operativo.
 
 Los contenedores están aislados del sistema y a nivel de red, cada contenedor tiene su propia stack de net y sus propios puertos.
-
 
 [chroot, cgroups and namespaces](https://itnext.io/chroot-cgroups-and-namespaces-an-overview-37124d995e3d)
 
@@ -101,7 +104,7 @@ docker rm -f nombre_contenedor // borrar contenedor
 docker kill nombre_contenedor // matar contenedor
 ```
 
-## Exponiendo contenedores al mundo exterior
+### Exponiendo contenedores al mundo exterior
 
 Debemos redirigir los puertos del contenedor a los de la computadora y lo podemos hacer al utilizar este comando:
 
@@ -117,7 +120,7 @@ docker run -d --name server nginx
 docker run -d --name server -p 8080:80 nginx //-p publish
 ```
 
-## Levantar base de datos
+### Levantar base de datos
 
 ```
 docker run -d --name db mongo
@@ -138,7 +141,7 @@ docker inspect -f '{{ json .Mounts }}' db
 
 El sistema escribe en el sistema operativo y así cuando se mate el contenedor esta información no se pierde.
 
-## Docker [Volumes](https://docs.docker.com/storage/)
+### Docker [Volumes](https://docs.docker.com/storage/)
 
 
 Esta herramienta nos permite recuperar datos que podíamos dar por perdido.
@@ -160,7 +163,7 @@ Existen tres maneras de hacer permanencia de datos:
  exit
 ```
 
-## Imagenes
+### Imagenes
 
 Imágenes son fundamentalmente plantillas o templates. Una imagen esta construida sobre una capa base y capas por encima
 
@@ -171,7 +174,7 @@ docker pull redis
 docker image ls
 ```
 
-repositorios de docker https://hub.docker.com/
+* repositorios de docker https://hub.docker.com/
 
 ```
 docker pull ubuntu:18.04
@@ -179,7 +182,9 @@ docker pull ubuntu:18.04
 
 Para  crear nuestras propias imágenes, necesitamos un archivo llamado DockerFile que es lo que utiliza Docker para crear imágenes.
 
-**Es importante que el DockerFile siempre empiece con un `FROM` sino, no va a funcionar. **
+::: tip
+Es importante que el DockerFile siempre empiece con un `FROM` sino, no va a funcionar.
+:::
 
 El flujo para construir en Docker siempre es así:
 Dockerfile –> **build ** –> Imágen –> run --> Contenedor
@@ -198,6 +203,8 @@ docker push nilya4/ubuntu:test
  docker history ubuntu:test
 ```
 
+* Herramienta para ver mejor el contenido de una imagen
+
 https://github.com/wagoodman/dive
 
 
@@ -206,7 +213,7 @@ https://github.com/wagoodman/dive
  ctrl+u
 ```
 
-## Dockerfile node
+### Dockerfile node
 
 ```
 FROM node:8
@@ -342,7 +349,7 @@ docker-compose scale app-4 //escalar a que tenga 4 contenedores, es necesario po
 
 .dockerignore // para no meter ficheros que no necesito
 
-## Docker multi stage
+### Docker multi stage
 RUN npm install --only=production
 RUN npm install --only=development
 

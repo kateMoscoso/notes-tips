@@ -10,4 +10,7 @@ title: Tips documentation
 * [Html-css](/html-css/)
 * [Docker](/docker/)
 
+# Other 
+* [English](/english/)
+
 [[toc]]
