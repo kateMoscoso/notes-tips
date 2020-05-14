@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/notes-tips',
+  base: '/notes-tips/',
   dest: 'public',
   locales: {
     '/' :{
