@@ -41,3 +41,13 @@ La semántica HTML no es más que darle sentido y estructura a lo que estas escr
 
 
  * [More CSS things](/html-css/css)
+
+
+* Accesibilidadd
+
+https://www.w3.org/WAI/
+https://developer.mozilla.org/es/docs/Web/HTML/Atributos_Globales/tabindex
+https://www.ssa.gov/accessibility/andi/help/install.html
+https://support.apple.com/es-lamr/HT202362
+
+https://storybook.js.org/

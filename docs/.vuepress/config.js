@@ -13,10 +13,6 @@ module.exports = {
     }
   },
   themeConfig: {
-    nav: [{
-      text: 'Init',
-      link: '/'
-    }],
     sidebar: [
       '/',
       ['/javascript/', 'Javascript'],
