@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/',
+  base: '/notes-tips',
   locales: {
     '/' :{
       lang : 'es-SP',
@@ -16,8 +16,8 @@ module.exports = {
     locales: {
       '/' :{
         sidebar: [
-          ['/javascript/', 'Javascript'],
-          ['/vue/', 'Vue'],
+          ['/language-framework/javascript/', 'Javascript'],
+          ['/language-framework/vue/', 'Vue'],
           ['/docker/', 'Docker']
         ]
       }

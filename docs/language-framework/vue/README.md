@@ -1,8 +1,8 @@
 # Vue
 
-* [Best practices](best-practices/) 
-* [Events](events/) 
-* [Vue 3](vu3/vue3) 
+* [Best practices](/language-framework/best-practices/) 
+* [Events](/language-framework/events/) 
+* [Vue 3](/language-framework/vu3/vue3) 
 
 
 * ## Install

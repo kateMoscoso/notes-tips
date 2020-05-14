@@ -4,13 +4,13 @@ title: Tips
 
 # Programación
 
-* [Javascript](/javascript/) 
-* [Nest](/nest/) 
-* [Vue](/vue/) 
+* [Javascript](/language-framework/javascript) 
+* [Nest](language-framework/nest/) 
+* [Vue](language-framework/vue/) 
 
 # Estilos
 
-* [Html-css](/html-css/)
+* [Style](/styles/)
 
 # Integración
 
