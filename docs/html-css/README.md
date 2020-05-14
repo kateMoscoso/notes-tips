@@ -51,3 +51,8 @@ https://www.ssa.gov/accessibility/andi/help/install.html
 https://support.apple.com/es-lamr/HT202362
 
 https://storybook.js.org/
+
+Flexbox es un modelo de layout que nos permite posicionar y organizar los elementos de una manera muy fácil y práctica en la pantalla
+sus hijo directo flex item
+en flexbox se maneja os ejes, el eje principal o el eje secundario
+flex drection nos indica la dirección del eje

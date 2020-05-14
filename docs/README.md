@@ -8,11 +8,11 @@ title: Tips
 * [Nest](/nest/) 
 * [Vue](/vue/) 
 
-## Estilos
+# Estilos
 
 * [Html-css](/html-css/)
 
-## Integración
+# Integración
 
 * [Docker](/docker/)
 

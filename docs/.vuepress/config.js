@@ -3,8 +3,8 @@ module.exports = {
   locales: {
     '/' :{
       lang : 'es-SP',
-      title: 'Hello ;)',
-      description: 'Just playing around'
+      title: 'Hola ;)',
+      description: 'Web con mis apuntes'
     },
     '/en/':{
       lang : 'en-US',
@@ -13,12 +13,15 @@ module.exports = {
     }
   },
   themeConfig: {
-    sidebar: [
-      '/',
-      ['/javascript/', 'Javascript'],
-      ['/vue/', 'Vue'],
-      ['/docker/', 'Docker']
-    ]
+    locales: {
+      '/' :{
+        sidebar: [
+          ['/javascript/', 'Javascript'],
+          ['/vue/', 'Vue'],
+          ['/docker/', 'Docker']
+        ]
+      }
+    }
   },
   markdown: {
     plugins: [
