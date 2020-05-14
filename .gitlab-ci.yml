@@ -1,10 +1,6 @@
 image: node
 
 pages:
-  cache:
-    paths:
-    - node_modules/
-
   script:
   - yarn install # npm install
   - yarn docs:build # npm run docs:build
