@@ -1,21 +1,21 @@
 ---
-title: Tips
+title: Tips documentation
 ---
 
-# Programación
+# Documentation
 
 * [Javascript](/javascript/) 
 * [Nest](/nest/) 
 * [Vue](/vue/) 
 
-## Estilos
+# Style
 
 * [Html-css](/html-css/)
 
-## Integración
-
+# Devops
 * [Docker](/docker/)
 
 # Other 
 * [English](/english/)
 
+[[toc]]

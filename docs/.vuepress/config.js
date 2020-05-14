@@ -1,7 +1,17 @@
 module.exports = {
-  base: '/notes-tips/',
-  title: 'Hello ;)',
-  description: 'Just playing around',
+  base: '/',
+  locales: {
+    '/' :{
+      lang : 'es-SP',
+      title: 'Hello ;)',
+      description: 'Just playing around'
+    },
+    '/en/':{
+      lang : 'en-US',
+      title: 'Hello ;)',
+      description: 'Just playing around'
+    }
+  },
   themeConfig: {
     nav: [{
       text: 'Init',
