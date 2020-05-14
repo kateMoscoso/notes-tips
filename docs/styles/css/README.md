@@ -160,3 +160,12 @@ npm install -g sass
 ```
 
 https://github.com/teffcode/sass-workshop
+
+ul.Menu
+```
+ <ul class="Menu">
+               
+           </ul>
+           ```
+
+Cuando hay una sola linea poner el line-height: altura; a la misma altura del contenedor

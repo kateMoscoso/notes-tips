@@ -16,7 +16,7 @@
 
 ## jwt
 
-# what are JSON web Tokens?
+### Qué es JSON web Tokens?
 * Open source industry standard (RFC-7519)
 * Usable for Authorization or secure exchange of informatio between parties.
 * Verify that the sender is whho it/he/she claims to be.
@@ -36,5 +36,5 @@ xxxxx.yyyyy.zzzzz
 
 JSON Web Tokens can be decoded by anyone. They should not contain sensitive information such as passwords.
 
-It is useful for front-end applicatin to user these tokens to toggle features conditionally. For example, if a user is an administrator, we could show or hide a certain button base on the claims in the token.
+It is useful for front-end application to user these tokens to toggle features conditionally. For example, if a user is an administrator, we could show or hide a certain button base on the claims in the token.
 
