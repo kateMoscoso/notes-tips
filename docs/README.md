@@ -18,4 +18,5 @@ title: Tips
 
 # Other 
 * [English](/english/)
+* [Terminal](/terminal)
 
