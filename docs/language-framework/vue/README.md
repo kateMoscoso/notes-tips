@@ -1,5 +1,7 @@
 # Vue
 
+Framework muy pequeño
+
 * [Best practices](/language-framework/best-practices/) 
 * [Events](/language-framework/events/) 
 * [Vue 3](/language-framework/vu3/vue3) 
@@ -25,6 +27,8 @@
 * Prettier
 * Copy Relative Path
 * sarah.drasner
+
+
 
 
 Using Named Routes
