@@ -1,2 +1,5 @@
 * [Aprende vim](https://vim-adventures.com/)
 * [SED](https://likegeeks.com/es/sed-de-linux/)
+* [Memoriza rápido](https://www.youtube.com/watch?v=khXfXYOLfzU&feature=youtu.be)
+* [Gente que se cree superior](https://digest.bps.org.uk/2018/05/31/people-who-think-their-opinions-are-superior-to-others-are-most-prone-to-overestimating-their-relevant-knowledge-and-ignoring-chances-to-learn-more/)
+* [CodePen](https://codepen.io/)

@@ -18,7 +18,7 @@
 
 ## Vue UI
 
-## Plugins
+## Plugins en visual studio code
 
 * Vetur  div>ul>li>
 * Eslint
