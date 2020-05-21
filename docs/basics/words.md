@@ -8,3 +8,7 @@
 * HTML: Hyper Text Markup Language 
 * CSS: Cascade style sheets
 * Responsive Desgin
+
+* [Enlaces](/enlaces)
+* [Terminal](/terminal)
+* [Tipos de web](/types-web)

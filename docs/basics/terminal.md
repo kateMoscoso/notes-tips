@@ -1,3 +1,4 @@
+ ## Atajos terminal
 
 * Ver historial `history `
 * punteros a directorios
