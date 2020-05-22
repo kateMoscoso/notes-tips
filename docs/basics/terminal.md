@@ -172,3 +172,6 @@ tar xf backup.tar
 > MI_Var= algo
 
 > crontab -e
+
+* limpiar consola
+`ctrl +l`

@@ -45,7 +45,8 @@ module.exports = {
                       ['/basics/enlaces', 'Enlaces importantes'],
                       ['/basics/terminal', 'Terminal'],
                       ['/basics/types-web', 'Tipos de web'],
-                      ['/basics/words', 'Palabras']
+                      ['/basics/words', 'Palabras'],
+                      ['/basics/git', 'Git']
                     ]
                   }
                 ]
