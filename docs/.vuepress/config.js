@@ -42,10 +42,10 @@ module.exports = {
                     collapsable: false, // optional, defaults to true
                     sidebarDepth: 1,    // optional, defaults to 1
                     children: [
-                      ['/basics/enlaces', 'Enlaces importantes'],
+                      ['/basics/enlaces', 'Enlaces interesantes'],
                       ['/basics/terminal', 'Terminal'],
                       ['/basics/types-web', 'Tipos de web'],
-                      ['/basics/words', 'Palabras'],
+                      ['/basics/words', 'Sigla y Acrónimos'],
                       ['/basics/git', 'Git']
                     ]
                   }

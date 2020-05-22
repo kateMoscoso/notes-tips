@@ -2,9 +2,9 @@
 
 Framework muy pequeño
 
-* [Best practices](/language-framework/best-practices/) 
-* [Events](/language-framework/events/) 
-* [Vue 3](/language-framework/vu3/vue3) 
+* [Best practices](/language-framework/vue/best-practices/) 
+* [Events](/language-framework/vue/events/) 
+* [Vue 3](/language-framework/vue/vu3/vue3) 
 
 
 * ## Install

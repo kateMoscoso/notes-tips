@@ -5,7 +5,6 @@ title: Tips
 # Programación
 
 * [Javascript](/language-framework/javascript) 
-* [Nest](language-framework/nest/) 
 * [Vue](language-framework/vue/) 
 
 # Estilos
@@ -18,5 +17,8 @@ title: Tips
 
 # Other 
 * [English](/english/)
-* [Terminal](/terminal)
+* [Terminal](/basics/terminal)
+* [Tipos de web](/basics/types-web)
+* [Siglas y Acrónimos](/basics/words)
+* [Git](/basics/git)
 
