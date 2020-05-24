@@ -175,3 +175,6 @@ tar xf backup.tar
 
 * limpiar consola
 `ctrl +l`
+
+* Crear un alias
+>alias tree="git log --all --graph --decorate --oneline"

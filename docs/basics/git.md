@@ -39,7 +39,24 @@ https://git-scm.com/book/es/v2
 * `eval $(ssh-agent -s)`: Encender el "servidor" de llaves SSH de tu computadora: 
 * `ssh-add ruta-donde-guardaste-tu-llave-privada`: Añadir tu llave SSH a este "servidor":
 * `git remote set-url origin url_ssh`: Cambiar url
+* `git log --all --graph --decorate --oneline`: Pintar ramas
 
+* `git tag -a v0.1 -m "Mensaje" id_hash`: Crear hash
+* `git show-ref --tags`: Mostrar tags
+* `git tag -d nombre-del-tag`: Borrar tag
+* `git push originn :refs/tags/nombre_tag`: Borrar un tag del repositorio remoto
+* `git push origin --tags`: Publicar un tag en el repositorio remoto
+
+* `git config -l`: ver la configuración entera
+* `git pull origin rama`: traer rama
+
+* Los archivos binarios no se deberian subir al repo
+
+
+* `git remote add upstream url` fuente nueva de dónde traer datos
+
+* Las imagenes deberían ir en un content delivery web
+## Ramas comunes
 * hot_fix
 * develop
 * master
