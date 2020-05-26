@@ -1,11 +1,12 @@
 # Javascript
 
 ## Scope
+Es el alcance que va a tener una variable dentro del código.
 
 * Scope global
 * Scope local, puede acceder al scope global
 
-|                | var     | let    |let    |
+|                | var     | let    |const    |
 | -------------- |:-------:| ------:|------:|
 | compatibilidad | ✔       | Babel  | Babel |
 | scope          | función | bloque | bloque|

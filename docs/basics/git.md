@@ -55,6 +55,42 @@ https://git-scm.com/book/es/v2
 
 * `git remote add upstream url` fuente nueva de dónde traer datos
 
+::: danger
+* `git rebase master` Con rebase puedes recoger todos los cambios confirmados en una rama y ponerlos sobre otra.
+Es una mala práctica hacerl en master
+::: 
+
+* `git stash`: guardar en un lugar temporal
+* `git stash list`: listar 
+* `git stash pop` 
+* `git stash branch branch_name`: poner el stash en una rama
+* `git clean --dry-run`: Para saber qué archivos vamos a borrar  
+* `git clean -f`: Para borrar todos los archivos listados (que no son carpetas)  
+
+* `git cherry-pick id_commit`
+::: danger
+cherry-pick es una mala práctica porque significa que estamos reconstruyendo la historia
+::: 
+
+* `git commit --amend`: lo que hará es que los cambios que hicimos nos lo agregará al commit anterior
+
+::: danger
+* `git reset --soft id_HEAD`: te mantiene lo que tengas en staging ahí.
+* `git reset --hard id_HEAD`: resetea absolutamente todo incluyendo lo que tengas en staging.
+::: 
+
+* `git grep -n word_to_find`: nos listará un output con la línea de lo que estamos buscando.
+* `git grep -c word_to_find`: output de cuántas veces se repite esa palabra y en qué archivo.
+* `git grep -c "<p>"`: Archivos html
+* `git log -S word_to_find`: Buscar en los commits
+* `git short log`: Mostrar Log de commits por persona
+* `git shortlog -sm`: 
+* `git config --global alias.stats "shortlog -sm --all --no-merges"`: Crear un alias
+* `git blame file -c`: Ver quién hizo qué
+* `git blame file -L2,4`: Ver quién hizo qué
+* `git branch -r`
+* `git branch -a`
+
 * Las imagenes deberían ir en un content delivery web
 ## Ramas comunes
 * hot_fix

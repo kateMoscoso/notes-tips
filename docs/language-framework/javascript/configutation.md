@@ -14,3 +14,5 @@
 
  Sensitive information such as database usrname and password for production mode, will be provided via environment variables upon running the application.
  
+
+ https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner
