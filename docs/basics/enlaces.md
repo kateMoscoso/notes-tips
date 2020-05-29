@@ -5,3 +5,7 @@
 * [CodePen](https://codepen.io/)
 * [Subir imagenes](https://imgur.com/)
 * [Editor Markdown](https://pandao.github.io/editor.md/en.html)
+
+* [travis](https://docs.travis-ci.com/)
+
+* [Jest example](https://github.com/arielweinberger/nestjs-course-task-management/tree/validation/task-filtering-and-search)

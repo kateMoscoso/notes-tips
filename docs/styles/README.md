@@ -56,3 +56,6 @@ Flexbox es un modelo de layout que nos permite posicionar y organizar los elemen
 sus hijo directo flex item
 en flexbox se maneja os ejes, el eje principal o el eje secundario
 flex drection nos indica la dirección del eje
+
+
+plugins vscode-icons

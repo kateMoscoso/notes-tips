@@ -396,3 +396,4 @@ docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock docker:18.06.1-
 
 
 *Notes:* *Docker esta escrito en **GO***
+docker pull dpage/pgadmin4
