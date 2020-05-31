@@ -1,7 +1,7 @@
 # Javascript
 Lenguaje interpretado, orientado a objetos, débilmente tipado y dinámico
 
-## Scope
+# Scope
 Es el alcance que va a tener una variable dentro del código.
 
 * Scope global
@@ -20,7 +20,7 @@ Es el alcance que va a tener una variable dentro del código.
 * Si definimos una variable en el scope global (window en el navegador) podemos acceder a ella dentro de cualquier lugar del código.
 * Si definimos una variable dentro de una función solo lo podemos utilizar dentro de esa función si lo declaramos con `var`, si lo declaramos con `let` solo podemos acceder a ella en el bloque de código.
 
-## Funciones 
+# Funciones 
 
 Las funciones son fracciones de código reutilizable. JavaScript es un lenguaje interpretado, esto quiere decir que intentará ejecutar el código sin importar si los parámetros que le pasemos a la función estén invertidos o incluso incompletos.
 
