@@ -160,3 +160,6 @@ npm install -g sass
 ```
 
 https://github.com/teffcode/sass-workshop
+
+## PostCSS 
+Es un post-procesador de CSS, que a diferencia de los pre-procesadores, se apoya de JavaScript para tener más control sobre el archivo CSS resultante. Entonces, un post-procesador a diferencia de un pre-procesador, no es un cambio de sintaxis, es una nueva plataforma para crear estilos
