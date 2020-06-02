@@ -109,3 +109,77 @@ proceso.on('exit', function() {
 })
 
 ``` 
+* Nuevos imports 
+``` js
+import module from ''
+```
+> node --experimental-module index.js
+
+## Bcrypt
+
+``` js
+const password = '1234Segura!';
+
+bcrypt.hash(password, 5, function(err, hash) {
+    console.log(hash); 
+
+    bcrypt.compare('password', hash, function(err, res) {
+        console.log(res)
+    })
+});
+``` 
+
+## moment
+``` js
+let ahora = moment();
+
+console.log(ahora.toString());
+console.log(ahora.format('YYYY/MM/DD - HH:mm'));
+``` 
+## Calcular lo que tarda en ejecutar una funcion
+
+``` js
+let suma = 0;
+console.time('bucle');
+for (let i = 0; i < 100000000; i++) {
+    suma += 1;
+}
+console.timeEnd('bucle');
+``` 
+
+## Error first callback
+Paser siempre como primer parámetro el error
+``` js
+function asincrona(callback) {
+    setTimeout(function() {
+        try {
+            let a = 3 + z;
+            callback(null, a);
+        } catch (e) {
+            callback(e);
+        }
+    }, 1000);
+}
+
+
+asincrona(function (err, dato) {
+    if (err) {
+        console.error('Tenemos un error');
+        console.error(err);
+        return false;
+        // throw err; // NO VA A FUNCIONAR
+    }
+
+    console.log('todo ha ido bien, mi data es', dato);
+})
+``` 
+
+## Scraping
+[puppeteer](https://github.com/puppeteer/puppeteer)
+
+## Gulp
+Automatización de tareas
+
+> npm i gulp gulp-server-livereload
+
+ [An example](./gulp.md)

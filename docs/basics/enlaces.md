@@ -9,3 +9,4 @@
 * [travis](https://docs.travis-ci.com/)
 
 * [Jest example](https://github.com/arielweinberger/nestjs-course-task-management/tree/validation/task-filtering-and-search)
+* [TC39](https://tc39.es/)
