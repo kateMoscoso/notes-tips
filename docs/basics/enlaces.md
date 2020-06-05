@@ -10,3 +10,7 @@
 
 * [Jest example](https://github.com/arielweinberger/nestjs-course-task-management/tree/validation/task-filtering-and-search)
 * [TC39](https://tc39.es/)
+* http://bbb3d.renderfarming.net/download.html
+* [AST](https://astexplorer.net/)
+* [Esprima](https://esprima.org/)
+* [API](https://developers.themoviedb.org/3/getting-started/authentication)

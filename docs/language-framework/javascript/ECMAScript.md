@@ -11,7 +11,7 @@ function functionWithoutEcma(name, age, country){
 ```
 
 ```js
-function functionWithEcma(name = 'Kate', age = 30 , country = 'EC'){
+function functionWithEcma(name = 'Kate', age = 30 , country = 'EC') {
 
 }
 ```
@@ -65,6 +65,7 @@ function* helleWorld () {
 
 * Includes
 * Potencia 
+
 ```js
 const resultado = base ** exponente
 ```

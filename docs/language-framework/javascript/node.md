@@ -2,7 +2,7 @@
 Orientado a eventos
 ¿Qué es el event Loop?
 
-Un proceso con un bucle que gestiona, de forma asíncrona, todos los eventos de tu aplicación.
+Un proceso con un bucle que gestiona, de forma asíncrona, todos los eventos de tu aplicación. El Event Loop hace que Javascript parezca ser multihilo a pesar de que corre en un solo proceso.
 
 Los eventos vienen desde la cola de events (event queue).
 Se envian de uno a uno al event Loop, si los puede procesar los procesa.
@@ -15,7 +15,18 @@ Vuelve al event Loop, el event Loop si esta ejecutando otra cosa, lo envia otra 
     pm2 start nombre
     pm2 stop id
 
+Event Loop
 
+
+Javascript se organiza usando las siguientes estructuras de datos:
+
+* **Stack.** Va apilando de forma organizada las diferentes instrucciones que se llaman. Lleva así un rastro de dónde está el programa, en que punto de ejecución nos encontramos.
+* **Memory Heap.** De forma desorganizada se guarda información de las variables y del scope.
+* **Schedule Tasks**. Aquí se agregan a la cola, las tareas programadas para su ejecución.
+* **Task Queue.** Aquí se agregan las tares que ya están listas para pasar al stack y ser ejecutadas. El stack debe estar vacío para que esto suceda.
+* **MicroTask Queue.** Aquí se agregan las promesas. E*sta Queue es la que tiene mayor prioridad*.
+El Event Loop es un loop que está ejecutando todo el tiempo y pasa periódicamente revisando las queues y el stack moviendo tareas entre estas dos estructuras.
+El evento Loop l va a dar mś prioridad a las tareas del microTask(promises) que las del task qeue(stTimeout)
 ### Callbacks
 Pasar una función o algo que quiero que se ejecute a otra función. 
 

@@ -31,6 +31,7 @@ module.exports = {
                     sidebarDepth: 1,    // optional, defaults to 1
                     children: [
                       ['/language-framework/vue/', 'Vue'],
+                      ['/language-framework/react/', 'React'],
                           {
                             title: 'Javascript',
                             collapsable: false,
@@ -39,7 +40,9 @@ module.exports = {
                               '/language-framework/javascript/',
                               '/language-framework/javascript/node',
                               '/language-framework/javascript/webpack',
-                              '/language-framework/javascript/v8'
+                              '/language-framework/javascript/v8',
+                              '/language-framework/javascript/ECMAScript',
+                              '/language-framework/javascript/gulp'
                             ]
                       }
                     ]
@@ -47,6 +50,7 @@ module.exports = {
                   ['/docker/', 'docker'],
                   ['/english/', 'inglés'],
                   ['/styles/', 'Estilos'],
+                  ['/ci/', 'CI'],
                    {
                   title: 'Básicos',
                   collapsable: false, // optional, defaults to true
