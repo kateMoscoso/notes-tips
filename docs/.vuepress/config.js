@@ -42,7 +42,10 @@ module.exports = {
                               '/language-framework/javascript/webpack',
                               '/language-framework/javascript/v8',
                               '/language-framework/javascript/ECMAScript',
-                              '/language-framework/javascript/gulp'
+                              '/language-framework/javascript/gulp',
+                              '/language-framework/javascript/typescript',
+                              '/language-framework/javascript/patrones'
+                              
                             ]
                       }
                     ]

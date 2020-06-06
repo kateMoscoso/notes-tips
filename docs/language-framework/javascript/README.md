@@ -338,7 +338,23 @@ Sirve para observar elementos y si cruzan un umbral que nosotros definimos nos l
 
 El umbral se define por el porcentaje que tiene intersección con el viewport, con la parte visible de nuestra página.
 
+## VisibilityChange
+El visibilityChange forma parte del API del DOM llamado Page Visibility y nos deja saber si el elemento es visible, pude ser usado para ejecutar una acción cuando cambiamos de pestaña. Así podemos ahorrar batería y mejorar la UX.
 
+```js
+document.addEventListener("visibilitychange", () =>{
+  console.log(document.visibilityState)  
+})
+```
+
+## Service Workers
+Sirven para hacer que nuestras aplicaciones funcionen Offline.
+
+Muy usados en las Progressive Web Apps (PWA) los ServiceWorkers son una capa que vive entre el navegador y el Internet.
+
+Parecido a como lo hacen los proxys van a interceptar peticiones para guardar el resultado en cache y la próxima vez que se haga la petición tomar del cache ese resultado.
+El sw va a vivir dentro del navegador, se instala en el ordenador del usuario
+`self`es el `this` especifico para los sw
 ## jwt
 
 # Qué es JSON web Tokens?

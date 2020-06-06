@@ -14,3 +14,7 @@
 * [AST](https://astexplorer.net/)
 * [Esprima](https://esprima.org/)
 * [API](https://developers.themoviedb.org/3/getting-started/authentication)
+* [Patrones](https://every-layout.dev/)
+* [Media](https://mediaqueri.es/)
+* [Libro patrones](https://en.wikipedia.org/wiki/Design_Patterns)
+* [Blog](https://blog.codinghorror.com/)
