@@ -63,7 +63,8 @@ module.exports = {
                     ['/basics/terminal', 'Terminal'],
                     ['/basics/types-web', 'Tipos de web'],
                     ['/basics/words', 'Sigla y Acrónimos'],
-                    ['/basics/git', 'Git']
+                    ['/basics/git', 'Git'],
+                    ['/basics/poo', 'POO']
                   ]
                 }
                 ]
