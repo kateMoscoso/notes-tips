@@ -74,3 +74,7 @@ function area (r : Rectangulo): number {
 
 ## Clases
 En las clases en TypeScript sí existen las propiedades privadas.
+
+## Publicar npm 
+`build: "tsc src/**/*.ts --outDir lib"`
+> npm publish --access=public

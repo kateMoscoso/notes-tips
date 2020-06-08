@@ -20,7 +20,7 @@ Es usado para permitir la creación de una variedad de objetos complejos desde u
 ### Singleton
 Es un patrón que te asegura que una clase solo tiene una instancia. Esta única instancia puede ser consumida por cualquier otro objeto.
 
- ![An image](../images/singleton.png)
+ ![An image](../../images/singleton.png)
 
  Moongose te trae una sola instancia, la cachea peo siempre te trae una sola instancia
 
@@ -32,7 +32,7 @@ Es un patrón que te asegura que una clase solo tiene una instancia. Esta única
 ### Decorator
 Añade nuevas responsabilidades a un objeto de forma dinámica permitiendo así extender su funcionalidad sin tener que usar subclases.
 
-![Decorator](../images/decorator.png)
+![Decorator](../../images/decorator.png)
 
 ### Façade
 ### Flyweight
@@ -52,7 +52,7 @@ Es uno de los patrones más utilizados, algunos ejemplos típicos son:
    * Sockets
    * Listeners en páginas web
 
-![Observer](../images/observer.png)
+![Observer](../../images/observer.png)
 
 Redux utiliza este patrón. En Event emitter de Js tiene los siguientes métodos:
    * emitter.on = subscribe

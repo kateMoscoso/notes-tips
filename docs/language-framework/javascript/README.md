@@ -224,7 +224,7 @@ Array.prototype.forEach.call(buttons, button => {
 })
 ``` 
 * **functionName.apply().** Ejecuta la función recibiendo como primer argumento el `this` y como segundo un arreglo con los argumentos que recibe la función que llamó a `apply`.
-`caminar.apply(persona, [400, 'norte')]`
+`caminar.apply(persona, [400, 'norte'])`
 * **functionName.bind().** Recibe como primer y único argumento el `this`. No ejecuta la función, sólo regresa otra función con el nuevo `this` integrado.
 ``` js
 const personaSaluda = saluda.bind(persona)
