@@ -18,3 +18,4 @@
 * [Media](https://mediaqueri.es/)
 * [Libro patrones](https://en.wikipedia.org/wiki/Design_Patterns)
 * [Blog](https://blog.codinghorror.com/)
+* [Object-Oriented Thought Proces](https://www.amazon.es/Object-Oriented-Thought-Process-Developers-Library/dp/0321861272)
