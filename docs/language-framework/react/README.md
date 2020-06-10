@@ -227,3 +227,205 @@ Script para ejecutar las tareas de Webpack (package.json):
   },
 }
 ```
+
+## Estilos con SASS
+Los preprocesadores como *Sass* son herramientas que nos permiten escribir *CSS* con una sintaxis un poco diferente y más amigable que luego se transformará en *CSS* normal. Gracias a Sass podemos escribir CSS con variables, mixins, bucles, entre otras características.
+
+Instalación de Sass:
+
+> npm install --save-dev mini-css-extract-plugin css-loader node-sass sass-loader
+
+Configuración de Sass en Webpack (webpack.config.js):
+
+```js
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+// ...
+
+module: {
+  rules: [
+    {
+      test: /\.(s*)css$/,
+      use: [
+        { loader: MiniCssExtractPlugin.loader },
+        'css-loader',
+        'sass-loader',
+      ],
+    }, 
+  ],
+},
+
+// ...
+
+plugins: [
+  new MiniCssExtractPlugin({
+    filename: 'assets/[name].css',
+  }),
+],`
+```
+
+## Instalación de File Loader:
+
+> npm install --save-dev file-loader
+Configuración de File Loader en Webpack (webpack.config.js):
+
+```js
+rules: [
+  {
+    test: /\.(png|gif|jpg)$/,
+    use: [
+      {
+        loader: 'file-loader',
+        options: { name: 'assets/[hash].[ext]' },
+      }
+    ],
+  },
+],
+```
+Uso de File Loader con React:
+```js
+import React from 'react';
+import nombreDeLaImagen from '../assets/static/nombre-del-archivo';
+
+const Component = () => (
+  <img src={nombreDeLaImagen} />
+);
+
+export default Component;
+```
+
+## Imports, Variables y Fuentes de Google en Sass
+Así como JavaScript, Sass nos permite almacenar valores en variables que podemos usar en cualquier otra parte de nuestras hojas de estilo.
+
+```css
+$theme-font: 'Muli, sans-serif;
+$main-color: #8f57fd;
+
+body {
+  background: $main-color;
+  font-family: $theme-font;
+}
+```
+
+Podemos guardar nuestras variables en un archivo especial e importarlo desde los archivos de estilo donde queremos usar estas variables.
+
+# Vars.scss
+$theme-font: 'Muli, sans-serif;
+$main-color: #8f57fd;
+
+# App.scss
+```css
+@import ""./Vars.scss""
+
+`body {
+  background: $main-color;
+  font-family: $theme-font;
+}
+```
+También podemos importar hojas de estilo externas a nuestra aplicación. Por ejemplo: las fuentes de Google.
+```css
+@import url(https://fonts.googleapis.com/css?family=Muli&display-swap)
+```
+
+## Creando una Fake API
+Vamos a usar JSON Server para crear una Fake API: una API *falsa* construida a partir de un archivo JSON que nos permite preparar nuestro código para consumir una API de verdad en el futuro.
+
+Instalación de JSON Server:
+
+> sudo npm install json-server -g
+
+> json-server archivoParaTuAPI.json
+
+## React Hooks: useEffect y useState
+
+una característica de React disponible a partir de la versión 16.8 que nos permite agregar estado y ciclo de vida a nuestros componentes creados como funciones.
+Se hizo porque se tenía mcuha complejidad entre la cascada de elemnetos al pasarle las propiedades
+
+El Hook useState nos devuelve un array con dos elementos: la *primera* posición es el valor de nuestro estado, la *segunda* es una función que nos permite actualizar ese valor.
+
+El argumento que enviamos a esta función es el valor por defecto de nuestro estado (initial state).
+
+```js
+import React, { useState } from 'react';
+
+const Component = () => {
+  const [name, setName] = useState('Nombre por defecto');
+
+  return <div>{name}div>;
+}
+```
+
+El Hook **useEffect** nos permite ejecutar código cuando se monta, desmonta o actualiza nuestro componente.
+
+*El primer argumento* que le enviamos a *useEffect* es *una función que se ejecutará* cuando React monte o actualice el componente. Esta función puede devolver otra función que se ejecutará cuando el componente se desmonte.
+
+*El segundo argumento* es un array donde podemos especificar qué propiedades deben cambiar para que React vuelva a llamar nuestro código. Si el componente actualiza pero estas props no cambian, la función no se ejecutará.
+
+::: tip
+Por defecto, cuando no enviamos un segundo argumento, React ejecutará la función de useEffect cada vez que el componente o sus componentes padres actualicen. En cambio, si enviamos un array vacío, esta función solo se ejecutará al montar o desmontar el componente.
+:::
+
+```js
+
+import React, { useState, useEffect } from 'react';
+
+const Component = () => {
+  const [name, setName] = useState('Nombre por defecto');
+
+  useEffect(() => {
+    document.title = name;
+    return () => {
+      document.title = 'el componente se desmontó';
+    };
+  }, [name]);
+
+  return <div>{name}div>;
+}
+```
+
+## Custom Hooks
+React nos permite crear nuestros propios Hooks. Solo debemos seguir algunas convenciones:
+
+Los hooks siempre deben empezar con la palabra use: useAPI, useMovies, useWhatever.
+Si nuestro custom hook nos permite consumir/interactuar con dos elementos (por ejemplo, title y setTitle), nuestro hook debe devolver un array.
+Si nuestro custom hook nos permite consumir/interactuar con tres o más elementos (por ejemplo, name, setName, lastName, setLastName, etc.), nuestro hook debe devolver un objeto.
+
+
+## [PropTypes](https://es.reactjs.org/docs/typechecking-with-proptypes.html)
+Los PropTypes son una propiedad de nuestros componentes que nos permiten especificar qué tipo de elementos son nuestras props: arrays, strings, números, etc.
+
+Instalación de PropTypes:
+
+> npm install --save prop-types
+Uso de PropTypes:
+
+```js
+
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const Component = ({ name, lastName, age, list }) => {
+  // ...
+};
+
+Component.propTypes = {
+  name: PropTypes.string,
+  lastName: PropTypes.string,
+  age: PropTypes.number,
+  list: PropTypes.array,
+};
+
+export default Component;
+```
+
+Por defecto, enviar todas nuestras props es opcional, pero con los propTypes podemos especificar cuáles props son obligatorias para que nuestro componente funcione correctamente con el atributo isRequired.
+
+``` js
+
+Component.propTypes = {
+  name: PropTypes.string.isRequired, // obligatorio
+  lastName: PropTypes.string.isRequired, // obligatorio
+  age: PropTypes.number, // opcional,
+  list: PropTypes.array, // opcional
+};
+```

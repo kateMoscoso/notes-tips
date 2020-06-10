@@ -6,6 +6,7 @@ title: Tips
 
 * [Javascript](/language-framework/javascript) 
 * [Vue](language-framework/vue/) 
+* [React](language-framework/react/)
 
 # Estilos
 
