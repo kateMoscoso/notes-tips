@@ -31,7 +31,6 @@ module.exports = {
                     sidebarDepth: 1,    // optional, defaults to 1
                     children: [
                       ['/language-framework/vue/', 'Vue'],
-                      ['/language-framework/react/', 'React'],
                           {
                             title: 'Javascript',
                             collapsable: false,
@@ -47,7 +46,18 @@ module.exports = {
                               '/language-framework/javascript/patrones'
                               
                             ]
-                      }
+                      },
+                      {
+                        title: 'Javascript',
+                        collapsable: false,
+                        sidebarDepth: 1, 
+                        children: [
+                          '/language-framework/react/',
+                          '/language-framework/react/react-router',
+                          '/language-framework/react/utils'
+                          
+                        ]
+                  }
                     ]
                   },
                   ['/docker/', 'docker'],
