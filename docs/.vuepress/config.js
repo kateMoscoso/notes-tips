@@ -71,6 +71,8 @@ module.exports = {
                   children: [
                     ['/basics/enlaces', 'Enlaces interesantes'],
                     ['/basics/terminal', 'Terminal'],
+                    ['/basics/web', 'Web'],
+                    ['/basics/dom', 'DOM'],
                     ['/basics/types-web', 'Tipos de web'],
                     ['/basics/words', 'Sigla y Acrónimos'],
                     ['/basics/git', 'Git'],

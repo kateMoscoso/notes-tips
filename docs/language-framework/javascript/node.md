@@ -1,6 +1,32 @@
 # Node
-Orientado a eventos
-¿Qué es el event Loop?
+Node.js es un entorno de ejecución para JavaScript construido con el motor JavaScript V8 de Chrome.
+## Entorno de ejecución
+Es una capa encima del sistema operativo que ejecuta una pieza de software. Esta capa es la que decide como se consume la memoria, como accede a las variables, como debe pasar los parámetros, cuando y como ejecutar el garbage collector. 
+V8 es un engine de js
+El lenguaje intgerpretado es más rápido que el compilado pero cuando pasa por un loop es más lento porque cada vez que pasa por el loop tiene que volver a interpretarlo. Los lenguajes compilado se demoran mucho en cargar pero cuando se ejecutan son más rápidos.
+Javascript se compila ahora con el just in time compiler. Esta tecnologia tiene un monitor que se encarga de mirar cada cuanto se ejecuta nuestro código, si el código se ejecuta mucho pone un estado warn y ese código lo compila, si ese código compilado se ejecuta mucho pasa a un estado hot, entonces se hace una versión optimizada de ese código
+## Diferencias entre Js y nodejs
+
+En `JavaScript` del lado del cliente tenemos el DOM y el CSSDOM así como el objeto window para manipular los elementos de nuestra página además una serie de APIs, aquí unos ejemplos:
+
+* fetch
+* SessionStorage y LocalStorage
+* canvas
+* bluetooth
+* audio
+* web authentication
+
+Mientras que en `Node.js` no tenemos un DOM ni un objeto windows, lo que sí tenemos son una serie de módulos que nos permiten interactuar con los recursos de la máquina como el sistema operativo y el sistema de archivos, por ejemplo:
+
+* os
+* fs
+* http
+* util
+* debugger
+* stream
+* events
+
+## ¿Qué es el event Loop?
 
 Un proceso con un bucle que gestiona, de forma asíncrona, todos los eventos de tu aplicación. El Event Loop hace que Javascript parezca ser multihilo a pesar de que corre en un solo proceso.
 
@@ -159,7 +185,7 @@ console.timeEnd('bucle');
 ``` 
 
 ## Error first callback
-Paser siempre como primer parámetro el error
+Pasar siempre como primer parámetro el error
 ``` js
 function asincrona(callback) {
     setTimeout(function() {
@@ -185,12 +211,148 @@ asincrona(function (err, dato) {
 })
 ``` 
 
-## Scraping
-[puppeteer](https://github.com/puppeteer/puppeteer)
+## Arquitectura orientada a eventos
+Los eventos permite manejar el código asicrono de una mejor manera
 
-## Gulp
-Automatización de tareas
+### Event emitter
 
-> npm i gulp gulp-server-livereload
+```js
+//moduloe nativo de node
+const EventEmmiter = require("events");
+// registrase a los eventos
+logger.on("start", () => console.log("Starting"));
+```
+## Streams
+Los Streams son una colección de datos como los arrays o strings sólo que se van procesando pedazo por pedazo, esta capacidad los hace muy poderosos porque podemos manejar una gran cantidad de datos de manera óptima.
 
- [An example](./gulp.md)
+* Crear un fichero
+```js
+const fs = require("fs");
+const file = fs.createWriteStream("./big");
+
+for (let i = 0; i <= 1e6; i++) {
+  file.write(
+    "Palabras random "
+  );
+}
+
+file.end();
+```
+* Forma de crear un servidor para leer desde un fichero sin que consuma mucha memoria
+
+```js
+const fs = require("fs");
+
+const server = require("http").createServer();
+
+server.on("request", (req, res) => {
+  const src = fs.createReadStream('./big');
+  src.pipe(res);
+});
+
+server.listen(3000);
+```
+
+Los Readable y Writeable streams tienen los siguientes eventos y funciones respectivamente. Recuerda que tienen estos eventos porque los heredan de la clase EventEmitter.
+
+### Readable streams
+* Eventos
+   * data. Se dispara cuando recibe datos.
+   * end. Se dispara cuando termina de recibir datos.
+   * error. Se dispara cuando hay un error.
+* Funciones
+   * pipe
+   * unpipe
+   * read
+   * push
+
+```js
+const { Readable } = require('stream');
+const readableStream = new Readable();
+
+readableStream.push(`${0/0} `.repeat(10).concat("Batman, Batman!"));
+readableStream.push(null); //sabe que deja de recibir datos
+
+readableStream.pipe(process.stdout);
+```
+
+### Writeable streams
+* Eventos
+   * drain. Se dispara cuando emite datos.
+   * finish. Se dispara cuando termina de emitir.
+   * error. Se dispara cuando hay un error.
+* Funciones
+   * write
+   * end
+
+* Ejemplo leer dato e imprimirlos
+```js
+
+const { Writable } = require("stream");
+
+const writableStream = new Writable({
+  write(chunk, encoding, callback) {
+    console.log(chunk.toString());
+    callback();
+  }
+});
+
+process.stdin.pipe(writableStream);
+//funcionalidad nativa que se encarga de leer los datos
+```
+
+### Duplex y Transforms streams
+Ambos sirven para simplificar nuestro código:
+
+* Duplex: implementa los métodos write y read a la vez.
+* Transform: es similar a Duplex pero con una sintaxis más corta.
+
+```js
+const { Duplex } = require("stream");
+
+const duplexStream = new Duplex({
+  write(chunk, encoding, callback) {
+    console.log(chunk.toString());
+    callback();
+  },
+
+  read(size) {
+    if (this.currentCharCode > 90) {
+      this.push(null);
+      return;
+    }
+
+    this.push(String.fromCharCode(this.currentCharCode++));
+  }
+});
+
+duplexStream.currentCharCode = 65;
+```
+
+```js
+const { Transform } = require("stream");
+
+const transformStream = new Transform({
+  transform(chunk, enconding, callback) {
+    this.push(chunk.toString().toUpperCase());
+    callback();
+  }
+});
+
+process.stdin.pipe(transformStream).pipe(process.stdout);
+```
+
+## Sistema operativo y sistema de archivos
+En esta clase vemos dos módulos básicos:
+
+* **os.** Sirve para consultar y manejar los recursos del sistema operativo.
+* **fs.** Sirve para administrar (copiar, crear, borrar etc.) archivos y directorios.
+Los métodos contenidos en estos módulos (y en todo Node.js) funcionan de forma asíncrona por default, pero también se pueden ejecutar de forma síncrona, por ejemplo el método readFile() tiene su versión síncrona readFileSync().
+
+* Leer lo que pasa por la terminal `process.argv`
+* Set fichero estático 
+```js 
+app.use(express.static(path.join(__dirname, '/public')))
+app.use('/css', express.static(path.join(__dirname, '/node_modules/ddddd'))
+app.use('/js', express.static(path.join(__dirname, '/node_modules/ddddd'))
+```
