@@ -20,3 +20,17 @@
 * [Blog](https://blog.codinghorror.com/)
 * [Object-Oriented Thought Proces](https://www.amazon.es/Object-Oriented-Thought-Process-Developers-Library/dp/0321861272)
 * [node school](https://nodeschool.io/es/)
+* [Etiquetas html](http://html5doctor.com/)
+
+## Vue
+* [formas definir componente](https://medium.com/js-dojo/7-ways-to-define-a-component-template-in-vuejs-c04e0c72900d)
+
+## React 
+[react](https://www.youtube.com/watch?v=kp-NOggyz54)
+
+
+[No al mvc](https://styde.net/porque-laravel-no-es-mvc-y-tu-deberias-olvidarte-de-mvc/)
+
+[Clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+
+[Atajos visual studio code](https://www.tutorialesprogramacionya.com/herramientas/vscodeya/detalleconcepto.php?punto=17&codigo=17&inicio=0)
