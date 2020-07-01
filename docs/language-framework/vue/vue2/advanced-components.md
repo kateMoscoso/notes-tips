@@ -1,11 +1,11 @@
-Build a Reactivity System
-In this lesson we will build a simple reactivity system using the very same techniques you’ll find in the Vue source code. This will give you a better understanding of Vue.js and it’s design patterns, as well as get you familiar with watchers and the Dep class.
+# Advanced Components
+## Build a Reactivity System
 
-The Reactivity System
+### The Reactivity System
 Vue’s reactivity system can look like magic when you see it working for the first time.
 
 Take this simple app:
-
+```js
     <div id="app">
       <div>Price: ${{ price }}</div>
       <div>Total: ${{ price * quantity }}</div>
@@ -26,22 +26,26 @@ Take this simple app:
         }
       })
     </script>
-And somehow Vue just knows that if price changes, it should do three things:
+```
+And somehow `Vue` just knows that if `price` changes, it should do three things:
 
-Update the price value on our webpage.
-Recalculate the expression that multiplies price * quantity, and update the page.
-Call the totalPriceWithTax function again and update the page.
+* Update the `price` value on our webpage.
+* Recalculate the expression that multiplies `price * quantity`, and update the page.
+* Call the `totalPriceWithTax` function again and update the page.
+
 But wait, I hear you wonder, how does Vue know what to update when the price changes, and how does it keep track of everything?
 
 This is not how JavaScript programming usually works
 
 If it’s not obvious to you, the big problem we have to address is that programming usually doesn’t work this way. For example, if I run this code:
-
+```js
     let price = 5
     let quantity = 2
     let total = price * quantity  // 10 right?
     price = 20
     console.log(`total is ${total}`)
+```
+
 What do you think it’s going to print? Since we’re not using Vue, it’s going to print 10.
 
 >> total is 10
@@ -50,85 +54,13 @@ In Vue we want total to get updated whenever price or quantity get updated. We w
 >> total is 40
 Unfortunately, JavaScript is procedural, not reactive, so this doesn’t work in real life. In order to make total reactive, we have to use JavaScript to make things behave differently.
 
-Problem
-We need to save how we’re calculating the total, so we can re-run it when price or quantity changes.
-
-Solution
 First off, we need some way to tell our application, “The code I’m about to run, store this, I may need you to run it at another time.” Then we’ll want to run the code, and if price or quantity variables get updated, run the stored code again.
 
-
-
-We might do this by recording the function so we can run it again.
-
-    let price = 5
-    let quantity = 2
-    let total = 0
-    let target = null
-    
-    target = function () { 
-      total = price * quantity
-    }
-    
-    record() // Remember this in case we want to run it later
-    target() // Also go ahead and run it
-Notice that we store an anonymous function inside the target variable, and then call a record function. Using the ES6 arrow syntax I could also write this as:
-
-    target = () => { total = price * quantity }
-The definition of the record is simply:
-
-    let storage = [] // We'll store our target functions in here
-    
-    function record () { // target = () => { total = price * quantity }
-      storage.push(target)
-    }
-We’re storing the target (in our case the { total = price * quantity }) so we can run it later, perhaps with a replay function that runs all the things we’ve recorded.
-
-    function replay (){
-      storage.forEach(run => run())
-    }
-This goes through all the anonymous functions we have stored inside the storage array and executes each of them.
-
-Then in our code, we can just:
-
-    price = 20
-    console.log(total) // => 10
-    replay()
-    console.log(total) // => 40
-Simple enough, right? Here’s the code in it’s entirety if you need to read through and try to grasp it one more time. FYI, I am coding this in a particular way, in case you’re wondering why.
-
-    let price = 5
-    let quantity = 2
-    let total = 0
-    let target = null
-    let storage = []
-    
-    function record () { 
-      storage.push(target)
-    }
-    
-    function replay () {
-      storage.forEach(run => run())
-    }
-    
-    target = () => { total = price * quantity }
-    
-    record()
-    target()
-    
-    price = 20
-    console.log(total) // => 10
-    replay()
-    console.log(total) // => 40
-
-
-Problem
-We could go on recording targets as needed, but it’d be nice to have a more robust solution that will scale with our app. Perhaps a class that takes care of maintaining a list of targets that get notified when we need them to get re-run.
-
-Solution: A Dependency Class
 One way we can begin to solve this problem is by encapsulating this behavior into its own class, a Dependency Class which implements the standard programming observer pattern.
 
 So, if we create a JavaScript class to manage our dependencies (which is closer to how Vue handles things), it might look like this:
 
+```js
     class Dep { // Stands for dependency
       constructor () {
         this.subscribers = [] // The targets that are dependent, and should be 
@@ -144,8 +76,10 @@ So, if we create a JavaScript class to manage our dependencies (which is closer 
         this.subscribers.forEach(sub => sub()) // Run our targets, or observers.
       }
     }
-Notice instead of storage we’re now storing our anonymous functions in subscribers. ****Instead of our record function we now call depend ****and we now use notify instead of replay. To get this running:
+```
 
+Notice instead of storage we’re now storing our anonymous functions in subscribers. **Instead of our record function we now call depend** and we now use notify instead of replay. To get this running:
+```js
     const dep = new Dep()
     
     let price = 5
@@ -160,23 +94,25 @@ Notice instead of storage we’re now storing our anonymous functions in subscri
     console.log(total) // => 10 .. No longer the right number
     dep.notify()       // Run the subscribers 
     console.log(total) // => 40  .. Now the right number
+```
 It still works, and now our code feels more reusable. Only thing that still feels a little weird is the setting and running of the target.
 
-Problem
+* Problem
 In the future we’re going to have a Dep class for each variable, and it’ll be nice to encapsulate the behavior of creating anonymous functions that need to be watched for updates. Perhaps a watcher function might be in order to take care of this behavior.
 
 So instead of calling:
-
+```js
     target = () => { total = price * quantity }
     dep.depend() 
     target() 
-(this is just the code from above)
+```
 
 We can instead just call:
-
+```js
     watcher(() => {
       total = price * quantity
     })
+```
 Solution: A Watcher Function
 Inside our Watcher fucntion we can do a few simple things:
 
