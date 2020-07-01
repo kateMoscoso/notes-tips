@@ -76,7 +76,8 @@ module.exports = {
                     ['/basics/types-web', 'Tipos de web'],
                     ['/basics/words', 'Sigla y Acrónimos'],
                     ['/basics/git', 'Git'],
-                    ['/basics/poo', 'POO']
+                    ['/basics/poo', 'POO'],
+                    ['/basics/patterns', 'patrones']
                   ]
                 }
                 ]
@@ -95,6 +96,26 @@ module.exports = {
               }]
           }
             
+        },
+        '/en/': {
+          label: 'English',
+          sidebar: {
+            '':[
+              {
+                title: 'Tips',   // required
+                collapsable: false, // optional, defaults to true
+                sidebarDepth: 1,    // optional, defaults to 1
+                children: [ {
+                  title: 'Basics',
+                  collapsable: false, // optional, defaults to true
+                  sidebarDepth: 1,    // optional, defaults to 1
+                  children: [
+                    ['/en/basics/patterns', 'patterns']
+                  ]
+                }]
+              }
+            ]
+          }
         }
       }
     },
