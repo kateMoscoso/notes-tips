@@ -53,9 +53,19 @@ https://support.apple.com/es-lamr/HT202362
 https://storybook.js.org/
 
 Flexbox es un modelo de layout que nos permite posicionar y organizar los elementos de una manera muy fácil y práctica en la pantalla
-sus hijo directo flex item
-en flexbox se maneja os ejes, el eje principal o el eje secundario
+Esta conformado por dos partes, el container y sus hijo directo flex item
+en flexbox se maneja los ejes, el eje principal o el eje secundario,
+* Main axis(x)
+* Cross axis(y)
+Por defecto flexbox siempre nos va a mostrar el eje principal como el horizontal
 flex drection nos indica la dirección del eje
+* **justify content**, nos permite organizar los flex items en el eje principal. El eje principal va definido por el flex direction 
+  * space between, el navegador divide el pesacio disponible entre el número de elemento y ponen un espacio igual ente el número de elementos de manera homogenea, sin afectar los margenes 
+  * space arround, nos pone un margen al lado izquierdo y derecho de los elementos
+* **align items** organiza los flex items pero en el eje secundario, strech es el por defecto.
+  * Strech toma todo el espacio disponible que tengamos en el eje principal
+
+* **Flex grow** El navegador divide el espacio entre los factore de crecimiento que tiene. flex grow 3
 
 
-plugins vscode-icons
+* 

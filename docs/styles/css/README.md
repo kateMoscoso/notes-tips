@@ -1,5 +1,11 @@
 
 
+# Css
+* Reglas
+* Selectores
+* Declaraciones, son todo lo que hacemos con los selectores
+* Propiedades
+* Valores
 ## Anatomía de una declaración CSS: Selectores, Propiedades y Valores
 
 Nuestros estilos con CSS se componen de:
@@ -17,7 +23,10 @@ h1 {
 ```
 
 ## Tipos de selectores, pseudo-clases y pseudo-elementos
-* *(asterisco): Es el selector universal. Las propiedades se aplicaran a todos los elementos de nuestro HTML.
+
+* **Etiqueta:**  Referencia al tag html que se quiere manipular
+* **Decendente:** Elemento hijo de algún otro elemento
+* ***(asterisco):** Es el selector universal. Las propiedades se aplicaran a todos los elementos de nuestro HTML.
 
 * **Tipo:** Son selectores que se aplican a cierto elemento HTML en específico. Las propiedades se aplicaran a la etiqueta que queremos, por ejemplo p, body, html, div, etc. No es recomendable usarlos en app grandes
 
@@ -97,12 +106,12 @@ tienen que ser :
  * Documentación
 
 
-* **OOCSS:** Object Oriented CSS. Css orientado a objetos. 
-* **BEM:** Block element modifier 
+* **OOCSS:** Object Oriented CSS. Css orientado a objetos. [more](https://www.keycdn.com/blog/oocss)
+* **BEM:** Block element modifier [more](http://getbem.com/naming/)
 * **SMACSS:** Scalable and Modular Architecture for Css
 * **ITCSS:** Inverted Triangle CSS, [more](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/)
 * **Atomic Design:**
-
+* **Componente Css** [more](https://www.keycdn.com/blog/oocss)
 
 # ¿Qué es un componente? Analicemos nuestros diseños
 
