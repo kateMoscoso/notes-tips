@@ -347,12 +347,31 @@ En esta clase vemos dos módulos básicos:
 
 * **os.** Sirve para consultar y manejar los recursos del sistema operativo.
 * **fs.** Sirve para administrar (copiar, crear, borrar etc.) archivos y directorios.
-Los métodos contenidos en estos módulos (y en todo Node.js) funcionan de forma asíncrona por default, pero también se pueden ejecutar de forma síncrona, por ejemplo el método readFile() tiene su versión síncrona readFileSync().
+Los métodos contenidos en estos módulos (y en todo Node.js) funcionan de forma asíncrona por default, pero también se pueden ejecutar de forma síncrona, por ejemplo el método readFile() tiene su versión síncrona readFileSync(). Los métodocos asíncronos no necesita `try` `catch` porque el error se maneja desde el callback.
 
 * Leer lo que pasa por la terminal `process.argv`
 * Set fichero estático 
+[examples](https://github.com/kateMoscoso/node-basic/tree/master/so)
 ```js 
 app.use(express.static(path.join(__dirname, '/public')))
 app.use('/css', express.static(path.join(__dirname, '/node_modules/ddddd'))
 app.use('/js', express.static(path.join(__dirname, '/node_modules/ddddd'))
 ```
+
+## Express
+
+Express.js es un framework para crear Web Apps, Web APIs o cualquier tipo de Web Services, es libre bajo la licencia MIT.
+
+Express es muy liviano y minimalista además de ser extensible a través de Middlewares.
+
+Los Middlewares interceptan el request y el response para ejecutar una acción en medio.
+
+## Implementando una capa de servicios
+La arquitectura tradicional MVC se queda corta en aplicaciones modernas, por eso necesitamos una arquitectura diferente cómo la `Clean Arquitecture` que tiene una capa de servicios para manejar la lógica de negocio.
+
+* Controllers, middlewares, router, los controladores, no llaman otros controladores, solo pueden llamar servicios
+* Services, es dónde esta toda la lógica de negocio, pueden llamar otros servicios o libreriass
+* Librerias, son la capa que estan juntas a otra librerias externas
+
+
+mongo atlas, es recomendable restringir las conexiones por IP

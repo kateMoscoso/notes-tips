@@ -20,8 +20,7 @@ Es usado para permitir la creación de una variedad de objetos complejos desde u
 ### Singleton
 Es un patrón que te asegura que una clase solo tiene una instancia. Esta única instancia puede ser consumida por cualquier otro objeto.
 
- ![An image](../../images/singleton.png)
-
+img-singletton
  Moongose te trae una sola instancia, la cachea peo siempre te trae una sola instancia
 
 ## Patrones estructurales
