@@ -15,6 +15,7 @@ Son soluciones generales ya probadas dentro de un contexto que las limita a prob
 ## Behavioral Patterns
 ### Chain of Responsability
 Deacuples a request from a handling object in chain of handlers until it has finally recognized
+#### Concepts
 * Decaupling the sender and receiver objects 
 * Receiver contains references to next receiver 
 * Promotes loose coupling 
@@ -23,17 +24,17 @@ Deacuples a request from a handling object in chain of handlers until it has fin
   * java.util.logging.Logger#log()
   * javax.servlet.Filter#doFilter()
   * Spring Security Filter Chain
-* Design
-  * Chain of receiver objects
-  * Handler is Interface based
-  * Concrete handler for each implementation
-  * Each handler has a reference to the next
-  * Handler, ConcreteHandler
-* Pitfalls
-  * Handling/Handler guarantee
-  * Runtime configuration risk
-  * Chain length/performance issues
-* Contrast
+####  Design
+* Chain of receiver objects
+* Handler is Interface based
+* Concrete handler for each implementation
+* Each handler has a reference to the next
+* Handler, ConcreteHandler
+####  Pitfalls
+* Handling/Handler guarantee
+* Runtime configuration risk
+* Chain length/performance issues
+####  Contrast
 
 | Chain of Responsability         | Command | 
 | --------------------------------|:-------:| 
@@ -42,10 +43,35 @@ Deacuples a request from a handling object in chain of handlers until it has fin
 | Can utilize the command         | Reversible or Trackable in nature|
 
 ### Command
+#### Concepts
+####  Design
+#### Pitfalls
+#### Contrast
+
 ### Interpreter
+#### Concepts
+####  Design
+#### Pitfalls
+#### Contrast
+
 ### Iterator
+#### Concepts
+####  Design
+#### Pitfalls
+#### Contrast
+
 ### Mediator
+#### Concepts
+####  Design
+#### Pitfalls
+#### Contrast
+
 ### Memento
+#### Concepts
+####  Design
+#### Pitfalls
+#### Contrast
+
 ### Observer 
 El patrón observer se compone de un sujeto que ofrece mecanismos de suscripción y desuscripción a múltiples observadores que quieren ser notificados de los cambios en dicho sujeto. Cada observador expone un método de update que es usado por el sujeto para notificar cualquier cambio a todos los suscritos.
 Es uno de los patrones más utilizados, algunos ejemplos típicos son:
@@ -61,16 +87,40 @@ Redux utiliza este patrón. En Event emitter de Js tiene los siguientes métodos
    * emitter.emit = notife
 
 ### State
+#### Concepts
+####  Design
+#### Pitfalls
+#### Contrast
+
 ### Strategy
+#### Concepts
+####  Design
+#### Pitfalls
+#### Contrast
+
 ### Template Method
+#### Concepts
+####  Design
+#### Pitfalls
+#### Contrast
+
 ### Visitor
+#### Concepts
+####  Design
+#### Pitfalls
+#### Contrast
 
 
 ## Creational Patterns
 ### Abstract Factory
+#### Concepts
+####  Design
+#### Pitfalls
+#### Contrast
+
 ### Builder
 Es usado para permitir la creación de una variedad de objetos complejos desde un objeto fuente. Separa la creación de un objeto complejo de su estructura, de tal forma que el mismo proceso de construcción puede servir para crear representaciones diferentes.
-* Concepts
+#### Concepts
   * Handles complex constructors
   * Large number of parameters
   * Immutability
@@ -98,11 +148,38 @@ Es usado para permitir la creación de una variedad de objetos complejos desde u
 | Can be a separate class                    | Difficult to implement in legacy code|
 |Works with legacy code | |
 
+* Creative way to deal with complexity
+* Easy to implement
+* Few drawbacls
+* Can refactor in with separate class
 
 ### Factory Method
+#### Concepts
+####  Design
+#### Pitfalls
+#### Contrast
+
 ### Prototype
+#### Concepts
+* Avoids costly cretion
+* Avoids subclassing
+* Typlically doesn't use "new"
+* Usually implemented with a Registry
+* Example Java.lang.Object#clone()
+#### Design
+* Clone / Cloneable
+* Avoids keyword "new"
+* Although a copy, each instance unique
+* Costly construction not handled by client
+* builder is the opposite of the prototype
+* We can stille utilize parameter for constructor, diferent from singletton
+* Shallow vs Deep Copy, Shallow copy just copies the immediate properties, whereas a deep copy will copy any of its object references as well
+#### Pitfalls
+#### Contrast
+
 ### Singleton
 Es un patrón que te asegura que una clase solo tiene una instancia. Esta única instancia puede ser consumida por cualquier otro objeto.
+#### Concepts
 * Only one instance created
 * Guarantees control of a resource
 * Lazily loaded
