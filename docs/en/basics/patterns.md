@@ -112,11 +112,6 @@ Redux utiliza este patrón. En Event emitter de Js tiene los siguientes métodos
 
 
 ## Creational Patterns
-### Abstract Factory
-#### Concepts
-####  Design
-#### Pitfalls
-#### Contrast
 
 ### Builder
 Es usado para permitir la creación de una variedad de objetos complejos desde un objeto fuente. Separa la creación de un objeto complejo de su estructura, de tal forma que el mismo proceso de construcción puede servir para crear representaciones diferentes.
@@ -154,12 +149,76 @@ Es usado para permitir la creación de una variedad de objetos complejos desde u
 * Can refactor in with separate class
 
 ### Factory Method
+* Parameter driven
+* Solves complex creation
+* A little complex
+* Opposite of a Singleton
 #### Concepts
+* Doesn't expose instantiation logic
+* Defer to subclases
+* Common to subclasses
+* Specified by architecture, implemented by user
+* Examples:
+  * Calendar
+  * ResourceBundle
+  * NumberFormat
 ####  Design
+* Factory is responsible for lifecycle and is the opposite of singletton.
+* Objects created are referenced through a common interface
+* Factories will also reference multiple concrete classes or implementation, but the client is unware since they are references through the common interface
+* The method to request an object is typicalle parameterized. These parameters are what are used to determine the concrete type
 #### Pitfalls
+* Complexity,
+* Creatin in subclass
+* Refactoring
 #### Contrast
+| Singleton                       | Factory | 
+| --------------------------------|:-------:| 
+| Returns same instance           | Returns various instances|
+| One constuctor method - no args | multiples constructors|
+| No interface                    | Interface driven|
+| No subclasses                   | Subclasses | 
+| | Adaptable to environment more easily |
+
+### Abstract Factory
+Similar to Factory pattern
+If you have the same query for db you can use it for diferent kind of db
+* Group of similar factories
+* Complex
+* Heavy abstraction
+* Framework pattern
+#### Concepts
+* Factory of Factories, can be implemented without using the factory pattern, more often it not
+* Factory of related objects
+* Common interface 
+* Defer to subclasses as weel
+* Examples, Document builder, is used more often in fw
+####  Design
+* Groups factories together
+* Factory is respondible for lifecycle
+* Common interface
+* Concrete Classes
+* Parameterized create method
+* Composition
+#### Pitfalls
+* Complexity, difucult to implement
+* Runtime switch
+* Pattern within a pattern
+* Problem specific
+* Starts as a Factory
+#### Contrast
+| Factory                   | AbstractFactory |
+|:-------------------------:| :--------------:| 
+| Returns various instances | Implemented with a Factory |
+| multiples constructors    | Hides the Factory |
+| Interface driven          | Abstract Envirotnment
+| Adaptable to environment more easily | Built through composition|
 
 ### Prototype
+* Guarantee unique instance
+* Often refactores in
+* Can help with performance issues
+* Don't always jump to a Factory
 #### Concepts
 * Avoids costly cretion
 * Avoids subclassing
@@ -175,7 +234,18 @@ Es usado para permitir la creación de una variedad de objetos complejos desde u
 * We can stille utilize parameter for constructor, diferent from singletton
 * Shallow vs Deep Copy, Shallow copy just copies the immediate properties, whereas a deep copy will copy any of its object references as well
 #### Pitfalls
+* Sometimes not clear when to use
+* Used with other patterns
+  * Registry
+* Shallow vs Deep copy 
 #### Contrast
+| Prototype                       | Factory | 
+| --------------------------------|:-------:| 
+| Ligther weigth contruction      | Flexible Objects|
+|  *Copy constructor or clone* | Multiple constructors|
+| Shallow or deep                    | Concrete instance|
+| Copy itself| Fresh instance |
+
 
 ### Singleton
 Es un patrón que te asegura que una clase solo tiene una instancia. Esta única instancia puede ser consumida por cualquier otro objeto.
