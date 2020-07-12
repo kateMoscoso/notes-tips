@@ -1,10 +1,13 @@
 # Node
+
 Node.js es un entorno de ejecución para JavaScript construido con el motor JavaScript V8 de Chrome.
+
 ## Entorno de ejecución
 Es una capa encima del sistema operativo que ejecuta una pieza de software. Esta capa es la que decide como se consume la memoria, como accede a las variables, como debe pasar los parámetros, cuando y como ejecutar el garbage collector. 
 V8 es un engine de js
-El lenguaje intgerpretado es más rápido que el compilado pero cuando pasa por un loop es más lento porque cada vez que pasa por el loop tiene que volver a interpretarlo. Los lenguajes compilado se demoran mucho en cargar pero cuando se ejecutan son más rápidos.
-Javascript se compila ahora con el just in time compiler. Esta tecnologia tiene un monitor que se encarga de mirar cada cuanto se ejecuta nuestro código, si el código se ejecuta mucho pone un estado warn y ese código lo compila, si ese código compilado se ejecuta mucho pasa a un estado hot, entonces se hace una versión optimizada de ese código
+El lenguaje interpretado es más rápido que el compilado pero cuando pasa por un loop es más lento porque cada vez que pasa por el loop tiene que volver a interpretarlo. Los lenguajes compilado se demoran mucho en cargar pero cuando se ejecutan son más rápidos.
+Javascript se compila ahora con el *just in time compiler*. Esta tecnologia tiene un monitor que se encarga de mirar cada cuanto se ejecuta nuestro código, si el código se ejecuta mucho pone un estado warn y ese código lo compila, si ese código compilado se ejecuta mucho pasa a un estado hot, entonces se hace una versión optimizada de ese código.
+
 ## Diferencias entre Js y nodejs
 
 En `JavaScript` del lado del cliente tenemos el DOM y el CSSDOM así como el objeto window para manipular los elementos de nuestra página además una serie de APIs, aquí unos ejemplos:
@@ -30,18 +33,17 @@ Mientras que en `Node.js` no tenemos un DOM ni un objeto windows, lo que sí ten
 
 Un proceso con un bucle que gestiona, de forma asíncrona, todos los eventos de tu aplicación. El Event Loop hace que Javascript parezca ser multihilo a pesar de que corre en un solo proceso.
 
-Los eventos vienen desde la cola de events (event queue).
-Se envian de uno a uno al event Loop, si los puede procesar los procesa.
-Si no los puede procesar, los enviará al **Tread Pool**, dónde se getionarán de forma asincrona(peticiones bd, api, etc).
-Node para cada proceso del thread pool levantará un hilo nuevo y ese será el encargado de procesas la petición.
-Vuelve al event Loop, el event Loop si esta ejecutando otra cosa, lo envia otra vez al event queue.
+* Los eventos vienen desde la cola de events (event queue).
+* Se envian de uno a uno al event Loop, si los puede procesar los procesa.
+* Si no los puede procesar, los enviará al **Tread Pool**, dónde se gestionarán de forma asincrona(peticiones bd, api, etc).
+* Node para cada proceso del thread pool levantará un hilo nuevo y ese será el encargado de procesas la petición.
+* Vuelve al event Loop, el event Loop si esta ejecutando otra cosa, lo envia otra vez al event queue.
 
+### Util
 * [Nodemon](https://nodemon.io/)
 * [pm2](https://pm2.keymetrics.io/)
     pm2 start nombre
     pm2 stop id
-
-Event Loop
 
 
 Javascript se organiza usando las siguientes estructuras de datos:
@@ -49,10 +51,14 @@ Javascript se organiza usando las siguientes estructuras de datos:
 * **Stack.** Va apilando de forma organizada las diferentes instrucciones que se llaman. Lleva así un rastro de dónde está el programa, en que punto de ejecución nos encontramos.
 * **Memory Heap.** De forma desorganizada se guarda información de las variables y del scope.
 * **Schedule Tasks**. Aquí se agregan a la cola, las tareas programadas para su ejecución.
-* **Task Queue.** Aquí se agregan las tares que ya están listas para pasar al stack y ser ejecutadas. El stack debe estar vacío para que esto suceda.
-* **MicroTask Queue.** Aquí se agregan las promesas. E*sta Queue es la que tiene mayor prioridad*.
+* **Task Queue.** Aquí se agregan las tareas que ya están listas para pasar al stack y ser ejecutadas. El stack debe estar vacío para que esto suceda.
+* **MicroTask Queue.** Aquí se agregan las promesas. *Esta Queue es la que tiene mayor prioridad*.
 El Event Loop es un loop que está ejecutando todo el tiempo y pasa periódicamente revisando las queues y el stack moviendo tareas entre estas dos estructuras.
-El evento Loop l va a dar mś prioridad a las tareas del microTask(promises) que las del task qeue(stTimeout)
+
+:::tip
+El evento Loop va a dar más prioridad a las tareas del microTask(promises) que las del task queue (stTimeout)
+::: 
+
 ### Callbacks
 Pasar una función o algo que quiero que se ejecute a otra función. 
 
@@ -357,9 +363,13 @@ app.use(express.static(path.join(__dirname, '/public')))
 app.use('/css', express.static(path.join(__dirname, '/node_modules/ddddd'))
 app.use('/js', express.static(path.join(__dirname, '/node_modules/ddddd'))
 ```
-
+## Koa
+smaller than express
+## gedyy
+## sails 
 ## Express
 
+Do one thing, and do it well
 Express.js es un framework para crear Web Apps, Web APIs o cualquier tipo de Web Services, es libre bajo la licencia MIT.
 
 Express es muy liviano y minimalista además de ser extensible a través de Middlewares.
@@ -375,3 +385,6 @@ La arquitectura tradicional MVC se queda corta en aplicaciones modernas, por eso
 
 
 mongo atlas, es recomendable restringir las conexiones por IP
+
+import modules inside package.json
+"name_module": "dir/name_module"

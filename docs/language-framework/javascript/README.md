@@ -1,15 +1,17 @@
 # Javascript
 Lenguaje interpretado, orientado a objetos, débilmente tipado y dinámico
 
-# Scope o ámbito
-Es el alcance que va a tener una variable dentro del código, en qué partes del código pueden ser usadas
+# Scope, ámbito, alcance de las funciones
+Es el alcance que va a tener una variable dentro del código, es decir, en qué partes del código pueden ser usadas
 
 * Scope global, variables disponibles de forma global `var`
 * Scope local, puede acceder al scope global
 * Function Scope, variables declaradas dentro de una función sólo visibles dentro de ella misma
-* Block scope, variables definidas dentro de un bloque, por ejemplo variables declaradas dentro un loop while o for. Se usa let y const para declarar este tipo de variables.
+* Block scope, variables definidas dentro de un bloque, por ejemplo, variables declaradas dentro un loop while o for. Se usa `let` y `const` para declarar este tipo de variables.
 * Module Scope, cuando se denota un script de tipo module con el atributo type="module las variables son limitadas al archivo en el que están declaradas.
 
+Si una variable no está definida dentro del cuerpo de una función hablamos de una `variable global`. Por el contrario, una variable definida dentro de una función es una `variable local`.
+Para que la ejecución de una función no modifique una variable global usamos parámetros en lugar de pasar directamente la variable. Es posible utilizar el mismo nombre para una variable global y para el parámetro de una  función con un alcance local.
 
 
 |                | var     | let    |const    |
@@ -34,7 +36,8 @@ function printNumbers () {
     }
 }
 ```
-Este ejemplo, imprimirá 10 veces el número 10, ya que, cuando intener imprimir `i` el valor es 10, esto se debe a qué esta deifnida de manera global, scope global.
+Este ejemplo, imprimirá 10 veces el número 10, ya que, cuando intente imprimir `i` el valor es 10, esto se debe a qué la variable esta definida de manera global, **scope global**.
+
 ```js
 function printNumbers () {
     for(var i = 0; i < 10; i++){
@@ -53,7 +56,7 @@ El siguiente ejemplo, imprime número del 0 al 10, ya que, con la nueva función
 ## Closures
 Son funciones que regresan una función o un objeto con funciones que mantienen las variables que fueron declaradas fuera de su scope.
 
-Los closures nos sirven para tener algo parecido a variables privadas, característica que no tiene JavaScript por default. Es decir encapsulan variables que no pueden ser modificadas directamente por otros objetos, sólo por funciones pertenecientes al mismo.
+Los closures nos sirven para tener algo parecido a **variables privadas**, característica que no tiene JavaScript por default. Es decir, encapsulan variables que no pueden ser modificadas directamente por otros objetos, sólo por funciones pertenecientes al mismo.
 
  ``` js
 function makeCounter(n) {
@@ -68,7 +71,7 @@ function makeCounter(n) {
   let counter = makeCounter(7);
   console.log(counter.increase())
   ```
-# Funciones 
+## Funciones 
 
 Las funciones son fracciones de código reutilizable. JavaScript es un lenguaje interpretado, esto quiere decir que intentará ejecutar el código sin importar si los parámetros que le pasemos a la función estén invertidos o incluso incompletos.
 
@@ -82,13 +85,6 @@ Las funciones son fracciones de código reutilizable. JavaScript es un lenguaje 
     printColor()
 })();
 ```
-
-
-### El alcance de las funciones
- 
-Si una variable no está definida dentro del cuerpo de una función hablamos de una `variable global`. Por el contrario, una variable definida dentro de una función es una `variable local`.
-Para que la ejecución de una función no modifique una variable global usamos parámetros en lugar de pasar directamente la variable.
-Es posible utilizar el mismo nombre para una variable global y para el parámetro de una función con un alcance local.
 
 ### Funciones declarativas 
 ``` js
@@ -107,8 +103,37 @@ var nombre = function(nombre){
 ```
 
 ### Diferencias:
-A las `funciones declarativas` se les aplica `hoisting`, y a la expresión de función, **no**. Ya que el *hoisting solo se aplica en las palabras reservadas var y function*.
-Lo que quiere decir que con las funciones declarativas, podemos llamar la función antes de que ésta sea declarada, y con la expresión de función, no, tendríamos que declararla primero, y después mandarla llamar.
+A las `funciones declarativas` se les aplica `hoisting`, y a la expresión de función, **no**. Ya que el *hoisting solo se aplica en las palabras reservadas `var` y `function`*.
+Lo que quiere decir que con las funciones declarativas, podemos llamar la función antes de que ésta sea declarada, y con la expresión de función, no, tendríamos que declararla primero, y después llamarla.
+
+
+### Arrow Function o funciones flechas
+Una expresión de función flecha tiene una sintaxis más compacta que una expresión de función 
+regular, por lo que son una buena alternativa a estas últimas, aunque no tienen su propio 
+`this, arguments, super ou new.target.` Estas expresiones no son adecuadas para ser utilizadas 
+como métodos, y no pueden ser usadas como constructores.
+
+### Limitaciones de las arrow functions
+
+* No podemos emplearlas para construir objetos. Por ejemplo, intentamos algo de este estilo:
+
+``` js
+const MyClass = () => {};
+const object = new MyClass();
+```
+
+Obtendremos el siguiente error:  `MyClass is not a constructor `:
+* No poseen prototype. Es decir, no podemos extender el prototipo de esta clase de objetos.
+
+``` js
+const MyClass = () => {};
+console.log(MyClass.prototype); // undefined
+``` 
+
+* No pueden ser usadas como funciones generadoras
+Las arrow functions no admiten la palabra `yield` dentro de su cuerpo, por lo que si queremos 
+crear una función generadora deberemos seguir recurriendo a la forma habitual: `function*` .
+
 
 ## Hoisting
 El concepto de `Hoisting` fue pensado como una manera general de referirse a cómo funcionan los contextos de ejecución en JavaScript (específicamente las fases de creación y ejecución. Sin embargo, el concepto puede ser un poco confuso al principio.
@@ -134,27 +159,6 @@ Cuando realizamos operaciones es recomendable usar tres símbolos de igual (===)
 ```
 
 Cuando comparamos objetos js, mira si la referencia a los objetos es la misma, si comparten el mismo lugar en memoria ram
-
-## Arrow Function o funciones flechas
-Una expresión de función flecha tiene una sintaxis más compacta que una expresión de función regular, por lo que son una buena alternativa a estas últimas, aunque no tienen su propio `this, arguments, super ou new.target.` Estas expresiones no son adecuadas para ser utilizadas como métodos, y no pueden ser usadas como constructores.
-### Limitaciones de las arrow functions
-
-* No podemos emplearlas para construir objetos. Por ejemplo, intentamos algo de este estilo:
-``` js
-const MyClass = () => {};
-const object = new MyClass();
-```
-
-Obtendremos el siguiente error:  `MyClass is not a constructor `:
-* No poseen prototype. Es decir, no podemos extender el prototipo de esta clase de objetos.
-
-``` js
-const MyClass = () => {};
-console.log(MyClass.prototype); // undefined
-``` 
-
-* No pueden ser usadas como funciones generadoras
-Las arrow functions no admiten la palabra `yield` dentro de su cuerpo, por lo que si queremos crear una función generadora deberemos seguir recurriendo a la forma habitual: `function*` .
 
 ## Generators
 Los generadores son funciones especiales, pueden pausar su ejecución y luego volver al punto donde se quedaron recordando su scope.
@@ -187,17 +191,18 @@ gen.next(true)
 ## This 
 `this` se refiere a un objeto, ese objeto es el que actualmente está ejecutando un pedazo de código.
 
-No se puede asignar un valor a this directamente y este depende de en que scope nos encontramos:
+No se puede asignar un valor a `this` directamente y este depende de en que `scope` nos encontramos:
 
-* Cuando llamamos a `this` en el `Global Scope` o Function Scope, se hace referencia al objeto `window`. A excepción de cuando estamos en `strict mode` que nos regresará `undefined`.
+* Cuando llamamos a `this` en el `Global Scope` o `Function Scope`, se hace referencia al objeto `window`. A excepción de cuando estamos en `strict mode` que nos regresará `undefined`.
 * Cuando llamamos a `this` desde una función que está contenida en un objeto, `this` se hace referencia a ese objeto.
-* Cuando llamamos a `this` desde una “clase”, se hace referencia a la instancia generada por el constructor.
+* Cuando llamamos a `this` desde una `clase`, se hace referencia a la instancia generada por el constructor.
 
 
 ## Los métodos call, apply y bind
 Estas funciones nos sirven para establecer el valor de `this`, es decir, cambiar el contexto que se va usar cuando la función sea llamada.
 
 Las funciones `call`, `apply` y `bind` son parte del prototipo `Function`. Toda función usa este prototipo y por lo tanto tiene estas tres funciones.
+
 ``` js
 function saludar () {
     console.log(`Hola, Soy ${this.name} ${this.apellido}`)
@@ -213,6 +218,7 @@ function caminar(metros, direccion) {
 ```
 
 * **functionName.call().** Ejecuta la función recibiendo como primer argumento el `this` y los siguientes son los argumentos que recibe la función que llamó a `call`.
+
 ``` js
 saludar.call(persona)
 caminar.call(persona, 400, 'norte')
@@ -225,7 +231,9 @@ Array.prototype.forEach.call(buttons, button => {
 ``` 
 * **functionName.apply().** Ejecuta la función recibiendo como primer argumento el `this` y como segundo un arreglo con los argumentos que recibe la función que llamó a `apply`.
 `caminar.apply(persona, [400, 'norte'])`
+
 * **functionName.bind().** Recibe como primer y único argumento el `this`. No ejecuta la función, sólo regresa otra función con el nuevo `this` integrado.
+
 ``` js
 const personaSaluda = saluda.bind(persona)
 personaSaluda()
@@ -240,9 +248,10 @@ persona4Saluda('oeste')
 ## Prototype
 En Javascript todo son objetos, **no tenemos clases**, no tenemos ese plano para crear objetos.
 
-Todos los objetos “heredan” de un prototipo que a su vez hereda de otro prototipo y así sucesivamente creando lo que se llama la prototype chain.
+Todos los objetos **heredan** de un prototipo que a su vez hereda de otro prototipo y así sucesivamente creando lo que se llama la prototype chain.
 
-La keyword `new` crea un nuevo objeto que “hereda” todas las propiedades del prototype de otro objeto. No confundir `prototype` con proto que es sólo una propiedad en cada instancía que apunta al prototipo del que hereda.
+La keyword `new` crea un nuevo objeto que **hereda** todas las propiedades del prototype de otro objeto. No confundir `prototype` con proto que es sólo una propiedad en cada instancía que apunta al prototipo del que hereda.
+
 ```js
 const heroMethods = {
     saludar: function () {
@@ -271,7 +280,9 @@ Hero.prototype.saludar = function () {
 }
 const batman = new Hero('Batman')
 ```
-* si hacemos new automaticamente se hace `const hero = Object.create(Hero.prototype) ` e incializa esto a `this` quedando `this = Object.create(Hero.prototype)`. Por lo tanto, el código equivale a:
+
+* si hacemos `new` automaticamente se hace `const hero = Object.create(Hero.prototype) ` e incializa esto a `this` quedando `this = Object.create(Hero.prototype)`. Por lo tanto, el código equivale a:
+
 ```js
 function Hero (name){
     this.name = name 
@@ -283,6 +294,7 @@ Hero.prototype.saludar = function () {
 }
 const batman = new Hero('Batman')
 ```
+
 ## Herencia Prototipal
 Por default los objetos en JavaScript tienen cómo prototipo a **Object** que es el punto de partida de todos los objetos, es el *prototipo padre*. **Object** es la raíz de todo, por lo tanto tiene un prototipo padre *undefined*.
 
@@ -295,19 +307,19 @@ La función **hasOwnProperty** sirve para verificar si una propiedad es parte de
 ## Parsers y el Abstract Syntax Tree
 El JS Engine recibe el código fuente y lo procesa de la siguiente manera:
 
-El parser descompone y crea tokens que integran el AST.
-Se compila a bytecode y se ejecuta.
-Lo que se pueda se optimiza a machine code y se reemplaza el código base.
-Un SyntaxError es lanzado cuando el motor JavaScript encuentra partes que no forman parte de la sintaxis del lenguaje y esto lo logra gracias a que se tiene un AST generado por el parser.
+* El parser descompone y crea tokens que integran el AST.
+* Se compila a bytecode y se ejecuta.
+* Lo que se pueda se optimiza a machine code y se reemplaza el código base.
+* Un SyntaxError es lanzado cuando el motor JavaScript encuentra partes que no forman parte de la sintaxis del lenguaje y esto lo logra gracias a que se tiene un AST generado por el parser.
 
-El parser es del 15% al 20% del proceso de ejecución por lo que hay que usar parser del código justo en el momento que lo necesitamos y no antes de saber si se va a usar o no.
+* El parser es del 15% al 20% del proceso de ejecución por lo que hay que usar parser del código justo en el momento que lo necesitamos y no antes de saber si se va a usar o no.
 
 ## Cómo funciona el JavaScript Engine
 Una vez tenemos el AST ahora hay que convertirlo a Bytecode.
 
-Bytecode es como el código assembler pero en lugar de operar en el procesador opera en la máquina virtual V8 del navegador.
+**Bytecode** es como el código assembler pero en lugar de operar en el procesador opera en la máquina virtual V8 del navegador.
 
-Machine code es el más bajo nivel, es código binario que va directo al procesador.
+**Machine code** es el más bajo nivel, es código binario que va directo al procesador.
 
 El profiler se sitúa en medio del bytecode y el optimizador
 
@@ -350,11 +362,12 @@ document.addEventListener("visibilitychange", () =>{
 ## Service Workers
 Sirven para hacer que nuestras aplicaciones funcionen Offline.
 
-Muy usados en las Progressive Web Apps (PWA) los ServiceWorkers son una capa que vive entre el navegador y el Internet.
+Muy usados en las **Progressive Web Apps** (PWA) los **ServiceWorkers** son una capa que vive entre el navegador e Internet.
 
 Parecido a como lo hacen los proxys van a interceptar peticiones para guardar el resultado en cache y la próxima vez que se haga la petición tomar del cache ese resultado.
 El sw va a vivir dentro del navegador, se instala en el ordenador del usuario
 `self`es el `this` especifico para los sw
+
 ## jwt
 
 # Qué es JSON web Tokens?
