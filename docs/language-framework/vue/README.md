@@ -67,8 +67,8 @@ const routes = [
 
 ## lifecycle hooks
 
-:::
-Don’t use arrow functions on an options property or callback, such as created: () => console.log(this.a) or vm.$watch('a', newValue => this.myMethod()). Since an arrow function doesn’t have a this, this will be treated as any other variable and lexically looked up through parent scopes until found, often resulting in errors such as Uncaught TypeError: Cannot read property of undefined or Uncaught TypeError: this.myMethod is not a function.
+::: tip
+Don’t use arrow functions on an options property or callback, such as `created: () => console.log(this.a) or vm.$watch('a', newValue => this.myMethod())`. Since an arrow function doesn’t have a this, this will be treated as any other variable and lexically looked up through parent scopes until found, often resulting in errors such as Uncaught TypeError: Cannot read property of undefined or Uncaught TypeError: this.myMethod is not a function.
 :::
 
  In order to output real HTML, you will need to use the v-html directive:
@@ -174,7 +174,7 @@ The name allows us to give this route a name so we can use that name throughout 
 
 The component allows us to specify which component to render at that route. Note that these are the same components that were imported at the top of the file. So as it is, the Home component will be rendered whenever the browser’s URL ends with a / with nothing after it.
 
-:::
+::: tip
 We place components in both the /components and /views folders. The difference is that when using Vue Router, it’s a best practice to put the components (AKA pages) that get loaded by Vue Router in the /views directory. You then keep the modular (reusable) components in your /components directory.
 :::
 

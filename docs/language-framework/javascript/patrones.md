@@ -67,3 +67,53 @@ Redux utiliza este patrón. En Event emitter de Js tiene los siguientes métodos
 * `-` privados
 * `+` público
 * `subrayado` estático
+
+
+#### Constructor pattern
+
+```js 
+var User = function(args){
+  var user = {};
+  user.email = args.email;
+  return user;
+```
+
+CommonJs is a project with the goal of specifying an ecosystem for JavaScript outside the browser (for example, on the server or for nativedesktop applicattions). The project was starte by Kevin Dangoor in January 2009 and initially named ServeJs
+
+## Module Pattern
+```js
+export.id = 1;
+exports.getId = function(){
+   return this.id
+}
+//app.js
+var MyModule = require("../lib/MyModule");
+MyModule.getId()
+```
+
+```js
+//module
+MyModule : {
+   id: 1,
+   getId :  function(){
+      return MyModule.id
+   }
+}
+```
+
+```js
+//explicit
+
+var MyModule = function (){
+   var id = 1
+   var getId = function (){
+      return id;
+   };
+   
+   return : {
+      findId : getId
+   }
+}();
+```
+
+https://github.com/robconery/node-application-patterns

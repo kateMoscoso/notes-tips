@@ -63,10 +63,12 @@ interface Rectangulo {
     ancho: number
     alto: number
 }
+
 let react : Rectangulo = {
     ancho:4
     alto:6
 }
+
 function area (r : Rectangulo): number {
     return r.alto * r.ancho
 }

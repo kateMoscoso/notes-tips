@@ -34,3 +34,6 @@
 [Clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 
 [Atajos visual studio code](https://www.tutorialesprogramacionya.com/herramientas/vscodeya/detalleconcepto.php?punto=17&codigo=17&inicio=0)
+
+## Javascript
+[Pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/)

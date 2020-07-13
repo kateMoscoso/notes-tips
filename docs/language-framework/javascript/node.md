@@ -244,6 +244,7 @@ for (let i = 0; i <= 1e6; i++) {
 
 file.end();
 ```
+
 * Forma de crear un servidor para leer desde un fichero sin que consuma mucha memoria
 
 ```js
@@ -349,8 +350,6 @@ process.stdin.pipe(transformStream).pipe(process.stdout);
 ```
 
 ## Sistema operativo y sistema de archivos
-En esta clase vemos dos módulos básicos:
-
 * **os.** Sirve para consultar y manejar los recursos del sistema operativo.
 * **fs.** Sirve para administrar (copiar, crear, borrar etc.) archivos y directorios.
 Los métodos contenidos en estos módulos (y en todo Node.js) funcionan de forma asíncrona por default, pero también se pueden ejecutar de forma síncrona, por ejemplo el método readFile() tiene su versión síncrona readFileSync(). Los métodocos asíncronos no necesita `try` `catch` porque el error se maneja desde el callback.
@@ -363,6 +362,7 @@ app.use(express.static(path.join(__dirname, '/public')))
 app.use('/css', express.static(path.join(__dirname, '/node_modules/ddddd'))
 app.use('/js', express.static(path.join(__dirname, '/node_modules/ddddd'))
 ```
+
 ## Koa
 smaller than express
 ## gedyy

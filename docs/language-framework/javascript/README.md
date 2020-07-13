@@ -334,6 +334,24 @@ Cada navegador tiene su implementación de JavaScript Engine:
 * JavaScriptCore - Safari
 * V8 - Chrome
 
+## Motor V8
+Es el motor de js que corre en el navegador de chrome. Cada navegador tenia su motor pero cada 
+navegador se esta migrando a V8 
+
+``` js
+console.log('1')
+console.log('2')
+setTimeout(() => {
+    console.log('3')
+},0)
+console.log('4')
+console.log('5')
+```
+
+El Proceso de `setTimeout` se lo pasa al navegador y el navegador lo empieza a ejecutar, cuando 
+acaba lo mete en el callbakc queue. El event loop pregunta si el proceso principal ha 
+preguntado y cuando ha acabado, imprime 3
+
 ## Getters y setters
 Los getters y setters son funciones que podemos usar en un objeto para tener propiedades virtuales. Se usan los keywords set y get para crear estas propiedades.
 

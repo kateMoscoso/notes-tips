@@ -39,16 +39,14 @@ module.exports = {
                               '/language-framework/javascript/',
                               '/language-framework/javascript/node',
                               '/language-framework/javascript/webpack',
-                              '/language-framework/javascript/v8',
                               '/language-framework/javascript/ECMAScript',
-                              '/language-framework/javascript/gulp',
                               '/language-framework/javascript/typescript',
-                              '/language-framework/javascript/patrones'
-                              
+                              '/language-framework/javascript/patrones',
+                              '/language-framework/javascript/utils'
                             ]
                       },
                       {
-                        title: 'Javascript',
+                        title: 'React',
                         collapsable: false,
                         sidebarDepth: 1, 
                         children: [
@@ -91,7 +89,11 @@ module.exports = {
                   '',
                   'configuration',
                   'node',
-                  'v8'
+                  'typescript',
+                  'ECMAScript',
+                  'utils',
+                  'webpack',
+                  'patrones'
                 ]
               }]
           }
