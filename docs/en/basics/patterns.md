@@ -13,6 +13,7 @@ Son soluciones generales ya probadas dentro de un contexto que las limita a prob
 * **Behavioral.** Gestionan algoritmos y responsabilidades entre objetos.
 
 ## Behavioral Patterns
+
 ### Chain of Responsability
 Deacuples a request from a handling object in chain of handlers until it has finally recognized
 #### Concepts
@@ -43,28 +44,216 @@ Deacuples a request from a handling object in chain of handlers until it has fin
 | Can utilize the command         | Reversible or Trackable in nature|
 
 ### Command
+* The second pattern more used
+* Enapsulate each requst as an object
+* Decouple sender from processor
+* Very few drawbacks
+* Often used for undi functionality
+
+![An image](../../images/command.jpg)
+
 #### Concepts
+* Encapsulate request as an Object
+* Object-oriented callback
+* Decouple sender from processor
+* Often used for "undo" funcionality
+* Examples: 
+    * java.lang.Runnable
+    * javax.swing.Action
 ####  Design
+* Object per command,command usually is a verb
+* Command Interface, all implementation will do thi interface
+* Execute method
+* 'Unexecute' method
+* Reflection
+* Command, Invoker, ConcreteCommand
+
 #### Pitfalls
+* Dependence n other patterns
+* Multiple commands
+* Make use of Memento
+* Prototype for copies
+
 #### Contrast
+
+| Command            | Strategy            | 
+|:------------------:| :-----------------: | 
+| Object per command | Object per strategy |
+| Class contains the `what` | Class contain the `how`|
+| Encapsulates action| Encapsulates algorithm |
+
+### Example 
+``` java
+Task task1 = new Task(10, 12);
+Task task2 = new Task(11, 13);
+
+Thread thread1 = new Thread(task1);
+thread1.start(); 
+
+Thread thread2 = new Thread(task2);
+thread2.start(); 
+
+```
 
 ### Interpreter
+* Define grammar
+* Rules or valiation
+* Special case pattern
+* Consider the visitor
+
 #### Concepts
+* Repreent grammar
+* Interpreter a senence
+* Map a domain
+* AST
+* Examples:
+  * java.util.Pattern
+  * java.text.Format
+
 ####  Design
+* AbstractExpresion
+* Interpreter
+* TerminalExpression
+* NomterminalExpression
+* Context, AbstractExpression, TerminalExpression, NonterminalExpression, Client
+
+![An image](../../images/interpreter.png)
+
 #### Pitfalls
+* Complexity, is the grammar is complex, difficult to mantain
+* Class per rule, New Expression, new class
+* Use of other patterns
+* Adding new variant
+* Specific case
+
 #### Contrast
+| Interpreter            | Visitor            | 
+|:----------------------:| :-----------------: | 
+| Access to properties   | Needs Observer functionality |
+| Function as methods    | Functionality found in one place |
+| Adding new functionality changes every variant| Adding new variant requires changing every visitor |
+
+
+### Example
+```java
+String input = "Lion, and trigers, and bears!";
+
+Pattern p = Pattern.compile("lion|cat|wolf|bear|tiger|liger");
+
+Matcher m = p.matcher(input);
+
+while(m.find()){
+  System.out.println("Found a " + m.group() + ".");
+}
+```
+
 
 ### Iterator
+* Efficent way to traverse
+* Hide algorthm
+* Simplify client
+* Foreach
+
 #### Concepts
-####  Design
+* Traverse a container
+* Doesn't expose underlying sctructure
+* Decouples algorithms
+* Sequential
+* Examples:
+  * java.util.Iterator
+  * java.util.Enumeration
+
+#### Design
+* Interface based
+* Factory Method based
+* Inependent, but fail fast
+* Enumeratos are fail safe
+* Iterator, ConcreteIterator
+
 #### Pitfalls
+* Access to index
+* Directional
+* Speed/ Efficiency
+
 #### Contrast
+| Iterator            | For loop            | 
+|:-------------------:| :-----------------: | 
+| Interface based     |  Traversal in client |
+| Algorithm is removed | Exposes and index |
+| No index| Doesn't change underlying object|
+| Concurrent modification | foreach syntax |
+| | Typically slower |
+
+#### Example
+
+```java
+List <String> names = new ArrayList<>();
+
+names.add("Bryan");
+names.add("Aaron");
+names.add("Jason");
+
+Iterator <String> namesItr = names.iterator();
+
+while(namesItr.hasNext()) {
+  String name = namesItr.next();
+  System.out.println(name);
+  namesItr.remove();
+}
+```
 
 ### Mediator
+* Loose coupling
+* simplified communication
+* Mediator complexity
+* Use with command
+
 #### Concepts
+* Loose coupling
+* Wel-defined, but complex
+* Reusable components
+* Hub/ Router
+* Examples
+  * java.util.Timer
+  * java.lang.Method#invoke()
+
 ####  Design
+* Interface based
+* Concrete class
+* Minimizes inheritance
+* Mediator knows about colleagues
+* Mediator, ConcreteMediator
+
+![An image](../../images/mediator.png)
 #### Pitfalls
+* Deity object
+* Limits subclassing
+* Over or with Command
+
 #### Contrast
+| Mediator            | Observer            | 
+|:-------------------:| :-----------------: | 
+| Defines interaction | One to many |
+| Object decoupling   | Object decoupling |
+| More specific       | More generic |
+
+#### Example
+```java
+ public MediatorEverydayDemo(int seconds){
+        toolkit = Toolkit.getDefaultToolkit();
+        timer = new Timer();
+        timer.schedule(new RemindTask(), seconds * 1000);
+        timer.schedule(new RemindTaskWithoutBeep(), seconds * 2 *  1000);
+    }
+
+    class RemindTask extends TimerTask {
+        @Override
+        public void run() {
+            System.out.println("Time's up!");
+            toolkit.beep();
+        }
+    }
+```
 
 ### Memento
 #### Concepts
