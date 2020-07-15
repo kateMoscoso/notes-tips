@@ -256,10 +256,55 @@ while(namesItr.hasNext()) {
 ```
 
 ### Memento
+* Capture state
+* Can get heavy with history
+* Recreate state
+* Command
+
 #### Concepts
+* Restore Object to pevious state
+* Externalize internal state
+* Undo/Rollback
+* Shiels complex internals
+* Examples:
+  * java.util.Date
+  * java.io.Serializable
+
 ####  Design
+* Class based
+* Originator, create the memento
+* Carataker, what manages the copy the memento create
+* Memento
+* Magic Cookie
+
+![An image](../../images/memento.png)
+
+
 #### Pitfalls
+* Can be expensive
+* Deletes/history
+* Exposing information
+
+
 #### Contrast
+| Memento           | Command            | 
+|:-----------------:| :-----------------: | 
+| State captured    | Request captured |
+| Independent state | Independent request |
+| Caretaker/History | History side benefit |
+
+#### Example
+
+```java
+Employee emp = new Employee();
+        emp.setName("Joe");
+        emp.setAddress("Calle illescas 34");
+        emp.setPhone("555666555");
+        
+        serialize(emp);
+
+        Employee newEmp = deserialize();
+```
 
 ### Observer 
 El patrón observer se compone de un sujeto que ofrece mecanismos de suscripción y desuscripción a múltiples observadores que quieren ser notificados de los cambios en dicho sujeto. Cada observador expone un método de update que es usado por el sujeto para notificar cualquier cambio a todos los suscritos.
