@@ -1,5 +1,13 @@
 # React
- es una librería desarrollada por Facebook que nos ayuda a construir interfaces de usuario interactivas para todo tipo de aplicaciones: web, móviles o de escritorio.
+React cumple su función como biblioteca, ya que, para utilizar su código se debe importar. También es un Framework aunque las convenciones de cómo debe ser organizado todo no son estrictas.
+
+React es declarativo, lo que quiere decir que se le indica qué debe hacer pero no cómo debe hacerse, ahorrando de esta manera muchos pasos.
+
+JSX es HTML dentro de Javascript.
+
+React está estructurado por componentes que son como pequeños bloques de lego que al ser unidos forman aplicaciones de React. Estos componentes pueden tener estilos, ser enlazados a eventos y sus estados pueden ser modificados.
+
+Con React también se tiene la ventaja de que será escrito una sola vez y podrá ser utilizado en aplicaciones web, móviles, entre otras.
 
 ## DOM, Virtual DOM y React DOM
 El DOM es el código HTML que se transforma en páginas web.
@@ -172,7 +180,7 @@ export default Button;
 
 una característica de React disponible a partir de la versión 16.8 que nos permite agregar estado y ciclo de vida a nuestros componentes creados como funciones.
 Se hizo porque se tenía mcuha complejidad entre la cascada de elemnetos al pasarle las propiedades
-con useState voy a poder manejar mi estado y con useEffect voy a poder hacer las transmicione, es decir hacer peticiones de una API o algún evento que se tenga que transmitir entre nuestro componentes, asi como, escuchar algún cambio que sea  necesario
+con useState voy a poder manejar mi estado y con useEffect voy a poder hacer las transmiciones, es decir hacer peticiones de una API o algún evento que se tenga que transmitir entre nuestro componentes, asi como, escuchar algún cambio que sea  necesario
 El Hook useState nos devuelve un array con dos elementos: la *primera* posición es el valor de nuestro estado, la *segunda* es una función que nos permite actualizar ese valor.
 
 El argumento que enviamos a esta función es el valor por defecto de nuestro estado (initial state).

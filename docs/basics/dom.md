@@ -28,3 +28,29 @@ Tanto con `async` como `defer` podemos hacer llamados asíncronos pero tiene sus
 Hay que tener en cuenta que cuando carga una página y se encuentra un script a ejecutar toda la carga se detiene. Por eso se recomienda agregar tus scripts justo antes de cerrar el body para que todo el documento esté disponible.
 :::
 
+## Etiquetas
+
+* Etiquetas de cabecera (head):
+
+  * **doctype:** indica al navegador el tipo de documento que se está mostrando.
+  * **html:** es la etiqueta que envuelve todo el documento
+  * **head:** es la cabecera del documento y contiene sub etiquetas que describen al documento o incluyen recursos adicionales.
+
+* Etiquetas del cuerpo del documento (body):
+
+  * **article:** diferencia partes del contenido que pueden vivir por sí mismas.
+  * **nav:** para hacer menús de navegación.
+  * **aside:** contenido menos relevante, como publicidad, etc.
+  * **section:** sirve para diferenciar las secciones principales del contenido.
+  * **header:** cabecera del documento.
+  * **footer:** pie de página del documento.
+  * **h1 - h6:** títulos de nuestro sitio web.
+  * **table:** tablas de contenidos, similar a la estructura de las hojas de calculo.
+  * **ul y ol:** listas de items.
+  * **div:** cualquier división para organizar el contenido.
+  * **p:** define el texto de un párrafo.
+  * **small:** aplica una apariencia de texto reducido en tamaño.
+  * **strong:** aplica al texto un formato de negritas.
+  * **a:** corresponde a un ancla o enlace a una url interna o externa del documento.
+  * **img:** con esta etiqueta podemos enlazar imágenes en el documento.
+  * **figure:** le da un contexto semántico a las imágenes.
