@@ -484,19 +484,106 @@ public void pullChain() {
 ```
 
 ### Template Method
+* Guarantees Algoruthm adherence
+* Ioc
+* Easier implementation
+
 #### Concepts
-####  Design
+* Code reuse
+* Common in libraries/frameworks
+* IoC
+* Algorithm emphasis
+* Examples:
+  * java.util.Collections#sort()
+  * java.util.AbstractList#IndexOf()
+
+####  Design 
+* Abstract Base class
+* Base calls Child
+* Hooks
+* Operations
+* AbstractBase, ConcreteClass
+
 #### Pitfalls
+* Restrict access
+* Confusing hierarchy
+* Difficult Program flow
+
 #### Contrast
+| Template method   | Strategy            | 
+|:-----------------:| :-----------------: | 
+| Same algorithm    | Algorithm per Strategy |
+| Class based       | Interface based |
+| Compile time      | CRun time |
+
 #### Examples
+```java
+  Collections.sort(people, new Comparator<Person>() {
+      @Override
+      public int compare(Person o1, Person o2) {
+          if (o1.getAge() > o2.getAge()) {
+              return 1;
+          }
+          if (o1.getAge() < o2.getAge()) {
+              return -1;
+          }
+          return 0;
+      }
+  });
+```
+
 
 ### Visitor
-#### Concepts
-####  Design
-#### Pitfalls
-#### Contrast
-#### Examples
+Separate algorithm from object structure
+* Expect changes
+* Minor complexity
+* Externalizes change
+* 
 
+#### Concepts
+* Separate algorithm from object
+* Adding new features
+* Maintain Open/Closed principle
+* Visitor changes
+* Examples:
+  * java.lang.model.element.Element
+  * java.lang.model.element.ElementVisitor
+
+#### Design
+* Interface based
+* Visitor and Element
+* Elements have visit method
+* Visitor knows every Element
+* Visitor, ConcreteVisitor, Element, ConcreteElement.
+
+![Visitor](../../images/visitor.png)
+
+
+#### Pitfalls
+* Plan for adaptability
+* Indirection somewhat confusing
+* Adapter pattern
+
+#### Contrast
+
+| Visitor   | Iterator            | 
+|:-----------------:| :-----------------: | 
+| Interfaced based | Interfaced based/ Anonymous|
+| Externalized changes | Encapsulates |
+| Multiple visitors | Singular |
+#### Examples
+```java
+public class VisitorEverydayDemo {
+    public static void main(String[] args) {
+        PartsOrder order = new PartsOrder();
+        order.addPart(new Wheel());
+        order.addPart(new Fender());
+        order.addPart(new Oil());
+        
+        order.accept(new AtvPartsShippigVisitor())
+    }
+}
+```
 
 ## Creational Patterns
 
