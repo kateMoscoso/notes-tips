@@ -50,7 +50,7 @@ Deacuples a request from a handling object in chain of handlers until it has fin
 * Very few drawbacks
 * Often used for undi functionality
 
-![An image](../../images/command.jpg)
+![Command](../../images/command.jpg)
 
 #### Concepts
 * Encapsulate request as an Object
@@ -117,7 +117,7 @@ thread2.start();
 * NomterminalExpression
 * Context, AbstractExpression, TerminalExpression, NonterminalExpression, Client
 
-![An image](../../images/interpreter.png)
+![Interpreter](../../images/interpreter.png)
 
 #### Pitfalls
 * Complexity, is the grammar is complex, difficult to mantain
@@ -224,7 +224,8 @@ while(namesItr.hasNext()) {
 * Mediator knows about colleagues
 * Mediator, ConcreteMediator
 
-![An image](../../images/mediator.png)
+![Mediator](../../images/mediator.png)
+
 #### Pitfalls
 * Deity object
 * Limits subclassing
@@ -277,7 +278,7 @@ while(namesItr.hasNext()) {
 * Memento
 * Magic Cookie
 
-![An image](../../images/memento.png)
+![Memento](../../images/memento.png)
 
 
 #### Pitfalls
@@ -320,29 +321,181 @@ Redux utiliza este patrón. En Event emitter de Js tiene los siguientes métodos
    * emitter.off = unsubcribe
    * emitter.emit = notife
 
-### State
+* Decoupled communication
+* Built in functionality
+* Used with mediator
+
 #### Concepts
-####  Design
+* One to many
+* Decoupled
+* Event hanling
+* Pub/sub
+* M-V-C
+* Examples:
+  * java.util.Observer
+  * java.util.EventListener
+  * javax.jms.Topic
+
+#### Design
+* Subject
+* Observer
+* Observable
+* Views are Observer
+* Subject, Concrete Subject, Observe, Concret Observer
+
 #### Pitfalls
+* Unexpected upates
+* Large sized consequences
+* What changed
+* Debugging difficult
+
 #### Contrast
+| Observer           | Mediator            | 
+|:-----------------:| :-----------------: | 
+| One-t-many    | One-to-one-to-Many |
+| Decoupled| Decoupled |
+| Broadcast Communication | Complex Communication |
+
+
+#### Examples
+
+```java
+TwitterStream messageStream = new TwitterStream();
+Client client1 = new Client("John");
+Client client2 = new Client("Bran");
+
+messageStream.addObserver(client1);
+messageStream.addObserver(client2);
+
+messageStream.someoneTweeted();
+```
+
+
+### State
+Represente stae  in an app
+* Simplifies cyclomatic complexity
+* Adding addditional states made easier
+* More classes
+* Similar implementation to Strategy
+
+
+#### Concepts
+* Localize state behavior
+* State object
+* Separates what from where
+* OCP
+* Examples
+  * JSF, iterator?
+
+####  Design
+* Abstract Class/ interface
+* Class based
+* Context unaware
+* Context, state, concreteState
+
+![State](../../images/state.png)
+
+
+#### Pitfalls
+* Know your states
+* More classes
+* Keep ogic out of context
+* State change triggers
+
+#### Contrast
+| State           | Strategy            | 
+|:-----------------:| :-----------------: | 
+| Interface base    | Interface based |
+| Transitions | Algorithm are independent |
+| Class per state  | Class per Algorithm|
+| know the next step  | don't know the next step |
+
+#### Examples
+
+```java
+final static int ON = 0;
+final static int OFF = 1;
+int state = OFF;
+
+public void pullChain() {
+    if (state == ON){
+        System.out.println("Fan is already on");
+    }
+    else if (state == OFF){
+        System.out.println("Turning Fan on.");
+        state = ON;
+    }
+}
+```
 
 ### Strategy
+ Enable the algorithm in runtime
+* Externalize algorithms
+* Client knows different Strategies
+* Class per strategy
+* Reduces conditional statements
+
 #### Concepts
+* Eliminate conditional statements
+* Behavior encapsulated in classes
+* Difficult to add new strategies
+* Client aware of strategies
+* Client chooses strategy
+* Examples
+  * java.util.Comparator
+
 ####  Design
+* Abstract base class
+* Concrete class per strategy
+* Removes if/else conditionals
+* Strategies are independent
+* Context, Strategy, ConcreteStrategy
+
+![Strategy](../../images/strategy.png)
+
+
 #### Pitfalls
+* Client aware of Strategies
+* Increased number of classes
+
 #### Contrast
+
+| State           | Strategy            | 
+|:-----------------:| :-----------------: | 
+| Interface based    | Interface based |
+| Transitions | Algorithm are independent |
+| Class per state  | Class per Algorithm |
+| know the next step  | don't know the next step |
+
+#### Examples
+```java
+  Collections.sort(people, new Comparator<Person>() {
+      @Override
+      public int compare(Person o1, Person o2) {
+          if (o1.getAge() > o2.getAge()) {
+              return 1;
+          }
+          if (o1.getAge() < o2.getAge()) {
+              return -1;
+          }
+          return 0;
+      }
+  });
+```
 
 ### Template Method
 #### Concepts
 ####  Design
 #### Pitfalls
 #### Contrast
+#### Examples
 
 ### Visitor
 #### Concepts
 ####  Design
 #### Pitfalls
 #### Contrast
+#### Examples
 
 
 ## Creational Patterns
@@ -515,6 +668,6 @@ Es un patrón que te asegura que una clase solo tiene una instancia. Esta única
 | | Adaptable to environment more easily |
 
  
-![An image](../../images/singleton.png)
+![Singleton](../../images/singleton.png)
 
 Moongose te trae una sola instancia, la cachea peo siempre te trae una sola instancia
