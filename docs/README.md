@@ -2,6 +2,11 @@
 title: Tips
 ---
 
+# Fundamentos
+
+* [Principios](/basics/principles)
+* [Patrones](/basics/patterns)
+
 # Programación
 
 * [Javascript](/language-framework/javascript) 

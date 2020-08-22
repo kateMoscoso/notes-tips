@@ -75,7 +75,8 @@ module.exports = {
                     ['/basics/words', 'Sigla y Acrónimos'],
                     ['/basics/git', 'Git'],
                     ['/basics/poo', 'POO'],
-                    ['/basics/patterns', 'patrones']
+                    ['/basics/patterns', 'patrones'],
+                    ['/basics/principles', 'principles']
                   ]
                 }
                 ]

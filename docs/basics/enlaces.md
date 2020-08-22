@@ -38,3 +38,8 @@
 ## Javascript
 [Pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/)
 [](https://www.pika.dev/)
+## Node
+[Middlewares](http://expressjs.com/en/resources/middleware.html)
+
+## Mysql 
+[free](https://remotemysql.com/)

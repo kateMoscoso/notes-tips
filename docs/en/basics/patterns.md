@@ -538,7 +538,7 @@ Separate algorithm from object structure
 * Expect changes
 * Minor complexity
 * Externalizes change
-* 
+
 
 #### Concepts
 * Separate algorithm from object
@@ -589,6 +589,15 @@ public class VisitorEverydayDemo {
 
 ### Builder
 Es usado para permitir la creación de una variedad de objetos complejos desde un objeto fuente. Separa la creación de un objeto complejo de su estructura, de tal forma que el mismo proceso de construcción puede servir para crear representaciones diferentes.
+
+//with setter the builder is ot inmutable with setter is a bean model
+
+
+* Creative way to deal with complexity
+* Easy to implement
+* Few drawbacls
+* Can refactor in with separate class
+
 #### Concepts
   * Handles complex constructors
   * Large number of parameters
@@ -597,12 +606,14 @@ Es usado para permitir la creación de una variedad de objetos complejos desde u
     * StringBuilder
     * DocumentBuilder
     * Locale.Builder
+
 #### Designs
 * Flexibility over telescoping constructors
 * Static inner class
 * Calls appropriate constructor
 * Negates the need for exposer setters
-* Java 1+ can take advantage of generics
+* Java 1.5+ can take advantage of generics
+
 #### Pitfalls
  * Immutable
  * Inner static class
@@ -615,18 +626,15 @@ Es usado para permitir la creación de una variedad de objetos complejos desde u
 | Handles complex constructors          | Implemented around clone|
 | No interface required | Avoids calling complex|
 | Can be a separate class                    | Difficult to implement in legacy code|
-|Works with legacy code | |
+| Works with legacy code | |
 
-* Creative way to deal with complexity
-* Easy to implement
-* Few drawbacls
-* Can refactor in with separate class
 
 ### Factory Method
 * Parameter driven
 * Solves complex creation
 * A little complex
 * Opposite of a Singleton
+
 #### Concepts
 * Doesn't expose instantiation logic
 * Defer to subclases
@@ -636,15 +644,18 @@ Es usado para permitir la creación de una variedad de objetos complejos desde u
   * Calendar
   * ResourceBundle
   * NumberFormat
+
 ####  Design
 * Factory is responsible for lifecycle and is the opposite of singletton.
 * Objects created are referenced through a common interface
 * Factories will also reference multiple concrete classes or implementation, but the client is unware since they are references through the common interface
 * The method to request an object is typicalle parameterized. These parameters are what are used to determine the concrete type
+
 #### Pitfalls
 * Complexity,
 * Creatin in subclass
 * Refactoring
+
 #### Contrast
 | Singleton                       | Factory | 
 | --------------------------------|:-------:| 
@@ -654,51 +665,20 @@ Es usado para permitir la creación de una variedad de objetos complejos desde u
 | No subclasses                   | Subclasses | 
 | | Adaptable to environment more easily |
 
-### Abstract Factory
-Similar to Factory pattern
-If you have the same query for db you can use it for diferent kind of db
-* Group of similar factories
-* Complex
-* Heavy abstraction
-* Framework pattern
-#### Concepts
-* Factory of Factories, can be implemented without using the factory pattern, more often it not
-* Factory of related objects
-* Common interface 
-* Defer to subclasses as weel
-* Examples, Document builder, is used more often in fw
-####  Design
-* Groups factories together
-* Factory is respondible for lifecycle
-* Common interface
-* Concrete Classes
-* Parameterized create method
-* Composition
-#### Pitfalls
-* Complexity, difucult to implement
-* Runtime switch
-* Pattern within a pattern
-* Problem specific
-* Starts as a Factory
-#### Contrast
-| Factory                   | AbstractFactory |
-|:-------------------------:| :--------------:| 
-| Returns various instances | Implemented with a Factory |
-| multiples constructors    | Hides the Factory |
-| Interface driven          | Abstract Envirotnment
-| Adaptable to environment more easily | Built through composition|
-
 ### Prototype
+
 * Guarantee unique instance
-* Often refactores in
+* Often refactored in
 * Can help with performance issues
 * Don't always jump to a Factory
+
 #### Concepts
 * Avoids costly cretion
 * Avoids subclassing
 * Typlically doesn't use "new"
 * Usually implemented with a Registry
 * Example Java.lang.Object#clone()
+
 #### Design
 * Clone / Cloneable
 * Avoids keyword "new"
@@ -707,21 +687,78 @@ If you have the same query for db you can use it for diferent kind of db
 * builder is the opposite of the prototype
 * We can stille utilize parameter for constructor, diferent from singletton
 * Shallow vs Deep Copy, Shallow copy just copies the immediate properties, whereas a deep copy will copy any of its object references as well
+
+![Protoype](../../images/prototype.png)
+
+
 #### Pitfalls
 * Sometimes not clear when to use
 * Used with other patterns
   * Registry
 * Shallow vs Deep copy 
+
 #### Contrast
 | Prototype                       | Factory | 
 | --------------------------------|:-------:| 
 | Ligther weigth contruction      | Flexible Objects|
-|  *Copy constructor or clone* | Multiple constructors|
+|  *Copy constructor or clone* | *Multiple constructors*|
 | Shallow or deep                    | Concrete instance|
 | Copy itself| Fresh instance |
 
 
-### Singleton
+
+### Abstract Factory
+
+Similar to Factory pattern
+If you have the same query for db you can use it for diferent kind of db
+* Group of similar factories
+* Complex
+* Heavy abstraction. interfaces, subclasses
+* Framework pattern
+
+#### Concepts
+* Factory of Factories, can be implemented without using the factory pattern, more often it not
+* Factory of related objects
+* Common interface 
+* Defer to subclasses as weel
+* Examples, Document builder, is used more often in fw
+
+####  Design
+* Groups factories together
+* Factory is respondible for lifecycle
+* Common interface
+* Concrete Classes
+* Parameterized create method
+* Composition
+
+#### Pitfalls
+* Complexity, difucult to implement
+* Runtime switch
+* Pattern within a pattern
+* Problem specific
+* Starts as a Factory
+
+#### Contrast
+| Factory                   | AbstractFactory |
+|:-------------------------:| :--------------:| 
+| Returns various instances | Implemented with a Factory |
+| multiples constructors    | Hides the Factory |
+| Interface driven          | Abstract Environment |
+| Adaptable to environment more easily | Built through composition|
+
+
+
+### Example
+``` java
+ DocumentBuilderFactory abstractFactory = DocumentBuilderFactory.newInstance();
+
+ DocumentBuilder factory = abstractFactory.newDocumentBuilder();
+
+ Document doc = factory.parse(bais);
+```
+
+
+### Singletton
 Es un patrón que te asegura que una clase solo tiene una instancia. Esta única instancia puede ser consumida por cualquier otro objeto.
 #### Concepts
 * Only one instance created
