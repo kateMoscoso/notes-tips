@@ -114,3 +114,5 @@ es un transpilador de código. Una herramienta que transforma y compila nuestro 
   ]
 }
 ```
+https://github.com/webpack-contrib/webpack-hot-middleware
+https://github.com/webpack/webpack-dev-middleware

@@ -13,4 +13,17 @@ A Single Page Application (SPA) is defined as a web app that loads from a single
 Cuando se esta construyendo el proyecto se genera toda la web de tal forma que cuando el usuario carga la web, se carga todo.
 
 ## SSR ( Server Side Rendering)
+* Servidor enviando respuesta en HTML para ser renderizada en e navegador 
+* Navegador renderizael sitio. Ahora es visile mientras el navegador descarga el JS
+* Navegador ejecuta React
+* El sitio es interactivo
+### Ventajas
+* Primera carga más rápida
+* Mejor SEO
+* Look & Feel
 
+## CSR (Client Side Rendering)
+* Servidor enviando respuesta al navegador
+* Navegador descarga JS
+* Navegador ejecut React
+* El sitio ahora e visible e interactuable

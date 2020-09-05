@@ -388,3 +388,84 @@ mongo atlas, es recomendable restringir las conexiones por IP
 
 import modules inside package.json
 "name_module": "dir/name_module"
+
+WebSockets: Qué son, por qué son interesantes y cómo usarlos
+El protocolo Websocket o wss:// crea un túnel de información entre el usuario y el servidor el cual se quedará abierto hasta que el servidor y/o el cliente cierre la conexión para pedir información en tiempo real.
+
+Habilitando CORS en producción
+El Intercambio de Recursos de Origen Cruzado (Cross-Origin Resource Sharing) es un mecanismo que agrega unos encabezados (Headers) adicionales HTTP para permitir que un user agent (generalmente un navegador) obtenga permisos para acceder a los recursos de un servidor en un origin distinto (dominio) del que pertenece.
+
+Por ejemplo una solicitud de origen cruzado seria hacer una petición AJAX desde una aplicación que se encuentra en https://dominio-a.com para cargar el recurso https://api.dominio-b.com/data.json.
+
+Por razones de seguridad, los navegadores restringen las solicitudes HTTP de origen cruzado iniciadas dentro de un script.
+
+Si necesitamos permitir request desde un dominio diferente al del servidor podemos usar el middleware cors para permitirlo, pero es importante no dejarlo expuesto a todos los dominios.
+
+Habilitar CORS para todos los request (No recomendado en producción)
+const express = require("express");
+const cors = require("cors");
+const app = express();
+
+app.use(cors());
+
+app.get("/products/:id", function(req, res, next) {
+  res.json({ msg: "This is CORS-enabled for all origins!" });
+});
+
+app.listen(8000, function() {
+  console.log("CORS-enabled web server listening on port 8000");
+});
+Habilitar CORS para los request específicos de un cliente (Recomendado para producción)
+const express = require("express");
+const cors = require("cors");
+const app = express();
+
+const corsOptions = { origin: "http://example.com" };
+
+app.use(cors(corsOptions));
+
+app.get("/products/:id", function(req, res, next) {
+  res.json({ msg: "This is CORS-enabled for only example.com." });
+});
+
+app.listen(8000, function() {
+  console.log("CORS-enabled web server listening on port 8000");
+});
+Debemos tener en cuenta que para aplicaciones server-side es poco probable que necesiten el uso de CORS debido a que las aplicaciones conviven en el mismo dominio. Sin embargo, es buena practica habilitarlo para los llamados externos de nuestra API.
+
+Más información sobre el middleware CORS en https://expressjs.com/en/resources/middleware/cors.html
+
+Cómo funciona y por qué es importante el uso de HTTPS
+El Protocolo Seguro de Transferencia de Hipertexto (HTTPS) es un protocolo HTTP que funciona en el puerto 443 y utiliza un cifrado basado en SSL (Secure Sockets Layer) / TLS (Transmission Layer security) con el fin de crear un canal de comunicación seguro entre el cliente y el servidor.
+
+Por qué usar HTTPS
+Una de las razones por la cual siempre debemos usar sitios con HTTPS es que sin este cualquier individuo podría efectuar ataques conocidos como man-in-the-middle o eavesdropping y obtener nuestro usuario y contraseña en el momento en que intentamos acceder a este servicio que no tiene HTTPS establecido.
+
+Cómo funciona
+El cliente envía un mensaje al servidor y este responde con su certificado publico.
+El cliente comprueba que este certificado sea valido y toma la llave publica.
+El cliente genera una cadena llamada pre-master secret y la cifra usando la llave publica del servidor y se lo envía.
+El servidor usa su llave privada para comprobar el pre-master secret.
+En ese momento tanto el cliente como el servidor usan el pre-master secret para generar un master secret que es usado como una llave simétrica.
+Teniendo este par de llaves ya se pueden enviar mensajes seguros entre ellos.
+Cómo habilitar HTTPS en nuestro servidor
+Dependiendo el servicio de hosting que estemos usando puede ofrecernos o no una instalación de certificados de seguridad SSL/TLS que pueden tener algún costo. Sin embargo existen servicios como Let’s Encrypt que permiten la instalación de este certificado completamente gratis. Servicios como Now y Heroku ofrecen HTTPS por defecto.
+
+https://devcenter.heroku.com/articles/config-vars
+https://vercel.com/docs/v2/build-step#environment-variables
+
+https://devcenter.heroku.com/articles/ssl
+
+https://devcenter.heroku.com/articles/automated-certificate-management
+
+https://vercel.com/docs/v1/features/certs
+
+https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04
+
+https://letsencrypt.org/
+
+## Cache
+https://expressjs.com/en/advanced/best-practice-performance.html#cache-request-results
+https://expressjs.com/en/advanced/best-practice-performance.html#set-node_env-to-production
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
+

@@ -404,3 +404,23 @@ xxxxx.yyyyy.zzzzz
 **Signature** La firma está calculada codificando el encabezamiento y el contenido en base64url.
 
 El Json web token puede ser decodificado por cualquier persona, por lo que, no debería tener información sensible como la contraseña
+
+
+Stack de seguridad moderno
+Anteriormente las compañías se comunicaban mediante un intranet que actualmente ha sido reemplazado con un stack de seguridad moderno usando:
+
+JSON Web Tokens: Nos permite comunicarnos entre dos clientes de una manera más segura.
+OAuth 2.0: Un estándar de la industria que nos permite implementar autorización.
+OpenID Connect: Es una capa de autenticación que funciona por encima de Oauth 2.0.
+
+¿Qué es la autenticación y la autorización ?
+La autenticación sirve para verificar la identidad de un usuario, verificar si el usuario existe y si los datos que está colocando son correctos.
+
+La autorización es la acción de permitir a un usuario acceso limitado a nuestro recursos.
+
+Introducción a las sesiones
+Cuando visitamos un sitio por primera vez se crea una sesión con los ajustes que se configuran. Por ejemplo, en un sitio web de reserva de hoteles, a medida que buscamos y ponemos preferencias de precios y demás, éstas se irán guardando en dicha sesión. Y luego estos datos se convertirán en un ID que será almacenado en una cookie en tu navegador.
+
+https://www.npmjs.com/package/cookie-session
+
+https://www.npmjs.com/package/express-session

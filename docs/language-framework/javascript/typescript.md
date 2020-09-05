@@ -3,6 +3,9 @@
 
 Los navegadores no entienden TypeScript así que lo vamos a transpilar a JavaScript usando [Parcel](https://parceljs.org/).
 
+ npm install -g typescript
+$ tsc --version
+
 ## Tipos básicos
 Tipos:
 
