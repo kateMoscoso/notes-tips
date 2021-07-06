@@ -22,3 +22,13 @@ Los métodos de MongoDB para implementar un CRUD son:
 
 Mongodb no tiene schemas pero es importante saber y usarlos
 moongose nos va a permitir crear schemas por software para nuestra base de datos
+
+SQL es el lenguaje de programación que utilizan la mayoría de los sistemas, está basado en álgebra relacional. En una base de datos NoSQL no estamos obligados, incluso muchas veces el motor no implementa el lenguaje.
+
+Las bases de datos NoSQL están diseñadas para ser distribuidas desde el comienzo, las bases de datos relacionales no.
+
+Sharding: Con las bases de datos NoSQL puedo tener varios servidores y en cada servidor tener una parte de la base de datos, puedo distribuir la información y eso me facilita los procesos de recuperación y puedo escalar únicamente lo que necesito y no es necesario escalar todo el cluster. En las bases de datos relacionales es complejo el proceso de distribución.
+
+
+Sql esta basado en el álgebra relacional y en el cálculo relacional, en entidades y sus relaciones, lo importante de estas es la atomicidad de las operaciones de base de datos, es decir, cuando quiero hacer una operación o la hago entera o no la hago haciendo uso del rollback. Los datos estan tipados, y tienen que cumplir esa integridad.
+NoSql, son de bases de datos sin una tabla fija a diferencia de las bases de datos relacionales, lo que permite una alta escalabilidad en ellas. Puede tener diferentes tipos de datos y no necesita tantos recursos para ejecutarse. Permiten adaptarse a necesidades de proyectos mucho más fácilmente que los modelos de Entidad Relación. Las bases de datos NoSQL están diseñadas para ser distribuidas desde el comienzo, las bases de datos relacionales no.
